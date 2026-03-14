@@ -853,7 +853,7 @@
 
 .home-page .service-carousel__track > .card--service {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 .home-page .service-carousel__footer {
@@ -2325,6 +2325,7 @@
     padding-bottom: 0.65rem;
     overscroll-behavior-x: contain;
     touch-action: pan-x;
+    scroll-snap-type: x proximity;
   }
 
   .storyboard-feature__copy,
@@ -2400,7 +2401,7 @@
     gap: 0.95rem;
     overflow-x: auto;
     padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-padding-inline: 0.05rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -2415,7 +2416,11 @@
   .home-issues-section .issue-grid > * {
     min-height: 100%;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+  }
+
+  .home-issues-section .issue-grid.is-touch-dragging {
+    scroll-snap-type: none;
   }
 
   .home-issues-section .card {
@@ -2455,7 +2460,7 @@
     gap: 0.95rem;
     overflow-x: auto;
     padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-padding-inline: 0.05rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -2470,7 +2475,11 @@
   .home-page .stats-grid > * {
     min-height: 100%;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+  }
+
+  .home-page .stats-grid.is-touch-dragging {
+    scroll-snap-type: none;
   }
 
   .home-page .faq-list--showcase .faq-item::after {

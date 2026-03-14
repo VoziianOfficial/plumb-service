@@ -3057,7 +3057,7 @@ body.menu-open .floating-estimate-button {
     gap: 0.85rem;
     overflow-x: auto;
     padding: 0.05rem 0.32rem 0.5rem 0.05rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-padding-inline: 0.05rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -3076,7 +3076,13 @@ body.menu-open .floating-estimate-button {
   .service-page .service-process-grid > * {
     min-height: 100%;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+  }
+
+  .service-page .issue-grid.is-touch-dragging,
+  .service-page .benefit-grid.is-touch-dragging,
+  .service-page .service-process-grid.is-touch-dragging {
+    scroll-snap-type: none;
   }
 }
 

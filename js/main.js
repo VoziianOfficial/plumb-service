@@ -337,6 +337,55 @@ function initInfiniteIssueGrids() {
     grid.style.scrollBehavior = previousBehavior;
   }
 
+  function snapGridToNearest(grid) {
+    const items = Array.from(grid.children);
+    let target = null;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    items.forEach(function (item) {
+      const distance = Math.abs(item.offsetLeft - grid.scrollLeft);
+
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        target = item;
+      }
+    });
+
+    if (!target) {
+      return;
+    }
+
+    grid.scrollTo({
+      left: target.offsetLeft,
+      behavior: "smooth"
+    });
+  }
+
+  function startTouchDrag(grid) {
+    const state = states.get(grid);
+
+    if (!state || !state.enabled) {
+      return;
+    }
+
+    window.clearTimeout(state.dragTimer);
+    grid.classList.add("is-touch-dragging");
+  }
+
+  function endTouchDrag(grid) {
+    const state = states.get(grid);
+
+    if (!state || !state.enabled) {
+      return;
+    }
+
+    window.clearTimeout(state.dragTimer);
+    state.dragTimer = window.setTimeout(function () {
+      grid.classList.remove("is-touch-dragging");
+      snapGridToNearest(grid);
+    }, 90);
+  }
+
   function prepareClone(item, setName) {
     const clone = item.cloneNode(true);
 
@@ -446,6 +495,7 @@ function initInfiniteIssueGrids() {
       isAdjusting: false,
       anchorStart: 0,
       loopWidth: 0,
+      dragTimer: 0,
       onScroll: function () {
         onGridScroll(grid);
       }
@@ -453,6 +503,38 @@ function initInfiniteIssueGrids() {
 
     states.set(grid, state);
     grid.addEventListener("scroll", state.onScroll, { passive: true });
+
+    if (window.PointerEvent) {
+      state.onPointerDown = function (event) {
+        if (event.pointerType !== "touch") {
+          return;
+        }
+
+        startTouchDrag(grid);
+      };
+      state.onPointerUp = function (event) {
+        if (event.pointerType !== "touch") {
+          return;
+        }
+
+        endTouchDrag(grid);
+      };
+
+      grid.addEventListener("pointerdown", state.onPointerDown, { passive: true });
+      grid.addEventListener("pointerup", state.onPointerUp, { passive: true });
+      grid.addEventListener("pointercancel", state.onPointerUp, { passive: true });
+    } else {
+      state.onTouchStart = function () {
+        startTouchDrag(grid);
+      };
+      state.onTouchEnd = function () {
+        endTouchDrag(grid);
+      };
+
+      grid.addEventListener("touchstart", state.onTouchStart, { passive: true });
+      grid.addEventListener("touchend", state.onTouchEnd, { passive: true });
+      grid.addEventListener("touchcancel", state.onTouchEnd, { passive: true });
+    }
 
     window.requestAnimationFrame(function () {
       measureGrid(grid, false);
@@ -467,6 +549,21 @@ function initInfiniteIssueGrids() {
     }
 
     grid.removeEventListener("scroll", state.onScroll);
+
+    if (state.onPointerDown) {
+      grid.removeEventListener("pointerdown", state.onPointerDown);
+      grid.removeEventListener("pointerup", state.onPointerUp);
+      grid.removeEventListener("pointercancel", state.onPointerUp);
+    }
+
+    if (state.onTouchStart) {
+      grid.removeEventListener("touchstart", state.onTouchStart);
+      grid.removeEventListener("touchend", state.onTouchEnd);
+      grid.removeEventListener("touchcancel", state.onTouchEnd);
+    }
+
+    window.clearTimeout(state.dragTimer);
+    grid.classList.remove("is-touch-dragging");
     grid.querySelectorAll(".is-loop-clone").forEach(function (clone) {
       clone.remove();
     });
@@ -989,6 +1086,43 @@ function initServiceCarousels() {
         scrollToRealIndex(originalCards.length - 1);
       }
     });
+
+    function startTouchSwipe(event) {
+      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
+
+      if (!isTouchEvent) {
+        return;
+      }
+
+      viewport.classList.add("is-dragging");
+      window.clearTimeout(scrollTimer);
+    }
+
+    function endTouchSwipe(event) {
+      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
+
+      if (!isTouchEvent) {
+        return;
+      }
+
+      viewport.classList.remove("is-dragging");
+
+      if (originalCards.length > 1) {
+        scheduleNormalize();
+      } else {
+        updateUi();
+      }
+    }
+
+    if (window.PointerEvent) {
+      viewport.addEventListener("pointerdown", startTouchSwipe, { passive: true });
+      viewport.addEventListener("pointerup", endTouchSwipe, { passive: true });
+      viewport.addEventListener("pointercancel", endTouchSwipe, { passive: true });
+    } else {
+      viewport.addEventListener("touchstart", startTouchSwipe, { passive: true });
+      viewport.addEventListener("touchend", endTouchSwipe, { passive: true });
+      viewport.addEventListener("touchcancel", endTouchSwipe, { passive: true });
+    }
 
     viewport.addEventListener("pointerdown", function (event) {
       if (event.pointerType === "touch" || event.button !== 0) {

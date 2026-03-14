@@ -334,7 +334,7 @@
     gap: 0.9rem;
     overflow-x: auto;
     padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-padding-inline: 0.05rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -349,7 +349,11 @@
   .services-catalog-section .catalog-shell > * {
     min-height: 100%;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+  }
+
+  .services-catalog-section .catalog-shell.is-touch-dragging {
+    scroll-snap-type: none;
   }
 
   .services-page .catalog-card {
@@ -363,9 +367,19 @@
 
   .services-page .catalog-card .media-tile--catalog {
     margin: -0.08rem -1.18rem 0.95rem;
+    height: 15.5rem;
     min-height: 15.5rem;
     aspect-ratio: auto;
     border-radius: 24px 24px 20px 20px;
+  }
+
+  .services-page .catalog-card .media-tile--catalog > img,
+  .services-page .catalog-card .media-tile--catalog > picture,
+  .services-page .catalog-card .media-tile--catalog .catalog-mobile-picture,
+  .services-page .catalog-card .media-tile--catalog picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .services-page .catalog-card .icon-badge {
@@ -395,6 +409,7 @@
   }
 
   .services-page .catalog-card .media-tile--catalog {
+    height: 14.25rem;
     min-height: 14.25rem;
   }
 }
