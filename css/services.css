@@ -206,11 +206,14 @@
 
 .services-page .catalog-card .media-tile--catalog {
   margin: -0.08rem -1.7rem 1.15rem;
+  height: 18.5rem;
   min-height: 18.5rem;
-  aspect-ratio: auto;
+  aspect-ratio: 1.14 / 0.92;
   border-radius: 30px 30px 24px 24px;
 }
 
+.services-page .catalog-card .media-tile--catalog > img,
+.services-page .catalog-card .media-tile--catalog > picture,
 .services-page .catalog-card .media-tile--catalog .catalog-mobile-picture {
   display: block;
   width: 100%;
