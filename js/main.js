@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initHeroSlideshows();
   initHomeFormSheet();
   initFloatingEstimateButton();
+  initTouchSnapGrids();
   initInfiniteIssueGrids();
   initSiteSearch();
   initServiceCarousels();
@@ -310,6 +311,125 @@ function initFloatingEstimateButton() {
       observer.observe(estimateForm);
     }
   }
+}
+
+function initTouchSnapGrids() {
+  const grids = Array.from(document.querySelectorAll(".home-page .stats-grid, .service-page .benefit-grid, .service-page .service-process-grid"));
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
+  const states = new WeakMap();
+
+  if (!grids.length) {
+    return;
+  }
+
+  function hasOverflow(grid) {
+    return mobileQuery.matches && grid.scrollWidth > grid.clientWidth + 6;
+  }
+
+  function snapToNearest(grid) {
+    const items = Array.from(grid.children);
+    let target = null;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    items.forEach(function (item) {
+      const distance = Math.abs(item.offsetLeft - grid.scrollLeft);
+
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        target = item;
+      }
+    });
+
+    if (!target) {
+      return;
+    }
+
+    grid.scrollTo({
+      left: target.offsetLeft,
+      behavior: "smooth"
+    });
+  }
+
+  function scheduleSnap(grid) {
+    const state = states.get(grid);
+
+    if (!state) {
+      return;
+    }
+
+    window.clearTimeout(state.snapTimer);
+    state.snapTimer = window.setTimeout(function () {
+      grid.classList.remove("is-touch-dragging");
+
+      if (hasOverflow(grid)) {
+        snapToNearest(grid);
+      }
+    }, 120);
+  }
+
+  grids.forEach(function (grid) {
+    const state = {
+      touchActive: false,
+      snapTimer: 0
+    };
+
+    function handleStart(event) {
+      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
+
+      if (!isTouchEvent || !hasOverflow(grid)) {
+        return;
+      }
+
+      state.touchActive = true;
+      window.clearTimeout(state.snapTimer);
+      grid.classList.add("is-touch-dragging");
+    }
+
+    function handleEnd(event) {
+      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
+
+      if (!isTouchEvent || !state.touchActive) {
+        return;
+      }
+
+      state.touchActive = false;
+      scheduleSnap(grid);
+    }
+
+    function handleScroll() {
+      if (!grid.classList.contains("is-touch-dragging")) {
+        return;
+      }
+
+      if (!state.touchActive) {
+        scheduleSnap(grid);
+      }
+    }
+
+    function handleResize() {
+      if (hasOverflow(grid)) {
+        return;
+      }
+
+      window.clearTimeout(state.snapTimer);
+      grid.classList.remove("is-touch-dragging");
+    }
+
+    states.set(grid, state);
+    grid.addEventListener("scroll", handleScroll, { passive: true });
+
+    if (window.PointerEvent) {
+      grid.addEventListener("pointerdown", handleStart, { passive: true });
+      grid.addEventListener("pointerup", handleEnd, { passive: true });
+      grid.addEventListener("pointercancel", handleEnd, { passive: true });
+    } else {
+      grid.addEventListener("touchstart", handleStart, { passive: true });
+      grid.addEventListener("touchend", handleEnd, { passive: true });
+      grid.addEventListener("touchcancel", handleEnd, { passive: true });
+    }
+
+    window.addEventListener("resize", handleResize, { passive: true });
+  });
 }
 
 function initInfiniteIssueGrids() {

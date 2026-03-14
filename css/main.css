@@ -3062,7 +3062,7 @@ body.menu-open .floating-estimate-button {
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
-    touch-action: pan-x;
+    touch-action: auto;
   }
 
   .service-page .issue-grid::-webkit-scrollbar,
