@@ -154,13 +154,22 @@
 }
 
 @media (max-width: 760px) {
+  .contact-hero::before {
+    display: none;
+  }
+
+  .contact-hero-media {
+    gap: 0.85rem;
+  }
+
   .contact-hero-stage::before {
     inset: auto 0.4rem -0.6rem 1.1rem;
     height: 42%;
   }
 
   .contact-hero-photo {
-    min-height: 300px;
+    min-height: 280px;
+    border-radius: 28px;
   }
 
   .contact-hero-chip {
@@ -173,10 +182,121 @@
 
   .contact-hero-photo .media-overlay {
     max-width: 100%;
-    padding: 1.08rem 1.05rem 1rem;
+    gap: 0.3rem;
+    padding: 0.95rem 0.95rem 0.88rem;
+  }
+
+  .contact-hero-note {
+    padding: 1rem;
+    border-radius: 22px;
+  }
+
+  .contact-page .form-card {
+    padding: 0.92rem;
+    border-radius: 22px;
+  }
+
+  .contact-form-card .section-copy h2 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .contact-form-card .section-copy .lede {
+    font-size: 0.92rem;
+    line-height: 1.52;
+  }
+
+  .contact-form-card .form-note-row {
+    margin: 0.25rem 0 0.08rem;
+  }
+
+  .contact-form-card .form-note-chip,
+  .contact-form-card .form-meta-row span {
+    min-height: 34px;
+    padding: 0.4rem 0.62rem;
+    font-size: 0.78rem;
+  }
+
+  .contact-form-card .lead-form {
+    gap: 0.82rem;
+  }
+
+  .contact-form-card .lead-form--panel {
+    margin-top: 0.08rem;
+    padding: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .contact-form-card .form-grid {
+    gap: 0.82rem;
+  }
+
+  .contact-form-card .field {
+    gap: 0.42rem;
+  }
+
+  .contact-form-card .field input,
+  .contact-form-card .field select,
+  .contact-form-card .field textarea {
+    min-height: 48px;
+    padding: 0.82rem 0.84rem;
+    border-radius: 16px;
+  }
+
+  .contact-form-card .field textarea {
+    min-height: 120px;
+  }
+
+  .contact-form-card .btn {
+    min-height: 48px;
+  }
+
+  .contact-page .mini-grid {
+    gap: 0.85rem;
+  }
+
+  .contact-card-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
   }
 
   .contact-map-embed {
-    min-height: 260px;
+    min-height: 240px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-page .form-card {
+    padding: 0.84rem;
+  }
+
+  .contact-form-card .section-copy h2 {
+    font-size: clamp(1.42rem, 7vw, 1.78rem);
+  }
+
+  .contact-form-card .section-copy .lede {
+    font-size: 0.88rem;
+  }
+
+  .contact-form-card .lead-form--panel {
+    padding: 0.78rem;
+  }
+
+  .contact-form-card .form-note-chip,
+  .contact-form-card .form-meta-row span {
+    font-size: 0.75rem;
+  }
+
+  .contact-hero-photo {
+    min-height: 250px;
+  }
+
+  .contact-hero-chip {
+    font-size: 0.72rem;
+  }
+
+  .contact-map-embed {
+    min-height: 220px;
   }
 }

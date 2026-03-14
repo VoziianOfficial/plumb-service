@@ -197,11 +197,24 @@
 .services-page .catalog-card {
   min-height: 100%;
   position: relative;
-  padding: 1.7rem;
+  padding: 0 1.7rem 1.7rem;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(250, 245, 238, 0.84)),
     rgba(255, 255, 255, 0.82);
   border-color: rgba(255, 255, 255, 0.86);
+}
+
+.services-page .catalog-card .media-tile--catalog {
+  margin: -0.08rem -1.7rem 1.15rem;
+  min-height: 18.5rem;
+  aspect-ratio: auto;
+  border-radius: 30px 30px 24px 24px;
+}
+
+.services-page .catalog-card .media-tile--catalog .catalog-mobile-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .services-page .catalog-card::after {
@@ -250,12 +263,18 @@
 }
 
 @media (max-width: 760px) {
-  .services-hero-stage {
+  .services-hero-panel {
     width: 100%;
   }
 
+  .services-hero-stage {
+    width: 100%;
+    gap: 0.68rem;
+  }
+
   .services-hero-photo {
-    min-height: 320px;
+    min-height: 280px;
+    border-radius: 28px;
   }
 
   .services-hero-stage::before {
@@ -274,19 +293,21 @@
   .services-hero-float {
     top: auto;
     right: 0.85rem;
-    bottom: 7.6rem;
-    width: min(12rem, calc(100% - 1.7rem));
-    padding: 0.8rem 0.88rem;
+    bottom: 6.4rem;
+    width: min(11.25rem, calc(100% - 1.7rem));
+    padding: 0.72rem 0.8rem;
+    border-radius: 20px;
   }
 
   .services-hero-dock {
-    gap: 0.78rem;
+    gap: 0.72rem;
     margin-inline: 0.25rem;
-    padding: 1rem;
+    padding: 0.95rem;
+    border-radius: 22px;
   }
 
   .services-hero-dock strong {
-    font-size: 1.02rem;
+    font-size: 1rem;
   }
 
   .services-hero-dock__meta {
@@ -294,7 +315,86 @@
     align-items: flex-start;
   }
 
+  .services-hero-dock span,
+  .services-hero-float span {
+    font-size: 0.82rem;
+    line-height: 1.44;
+  }
+
+  .services-hero-notes span {
+    min-height: 36px;
+    padding: 0.52rem 0.74rem;
+    font-size: 0.82rem;
+  }
+
   .services-catalog-section .catalog-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(16.5rem, 82%);
+    gap: 0.9rem;
+    overflow-x: auto;
+    padding: 0.05rem 0.35rem 0.5rem 0.05rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.05rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+
+  .services-catalog-section .catalog-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .services-catalog-section .catalog-shell > * {
+    min-height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .services-page .catalog-card {
+    padding: 0 1.18rem 1.18rem;
+    border-radius: 24px;
+  }
+
+  .services-page .catalog-card::after {
+    inset: 0 auto auto 1.05rem;
+  }
+
+  .services-page .catalog-card .media-tile--catalog {
+    margin: -0.08rem -1.18rem 0.95rem;
+    min-height: 15.5rem;
+    aspect-ratio: auto;
+    border-radius: 24px 24px 20px 20px;
+  }
+
+  .services-page .catalog-card .icon-badge {
+    margin-top: -2rem;
+    margin-bottom: 0.82rem;
+  }
+
+  .services-page .catalog-card p {
+    font-size: 0.92rem;
+    line-height: 1.56;
+  }
+}
+
+@media (max-width: 560px) {
+  .services-hero-photo {
+    min-height: 250px;
+  }
+
+  .services-hero-float {
+    bottom: 5.85rem;
+    width: min(10.75rem, calc(100% - 1.45rem));
+    padding: 0.68rem 0.76rem;
+  }
+
+  .services-catalog-section .catalog-shell {
+    grid-auto-columns: 86%;
+  }
+
+  .services-page .catalog-card .media-tile--catalog {
+    min-height: 14.25rem;
   }
 }

@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+  initCookieNotice();
   initMediaOverlayLinks();
   initHeroSlideshows();
+  initHomeFormSheet();
+  initFloatingEstimateButton();
+  initInfiniteIssueGrids();
   initSiteSearch();
   initServiceCarousels();
 
@@ -28,6 +32,508 @@ document.addEventListener("DOMContentLoaded", function () {
     node.textContent = new Date().getFullYear();
   });
 });
+
+function initCookieNotice() {
+  if (document.querySelector("[data-cookie-notice]")) {
+    return;
+  }
+
+  const storageKey = "blueroute-cookie-choice";
+  const body = document.body;
+  const root = document.documentElement;
+  const isServicePage = body.classList.contains("service-page");
+  const privacyHref = isServicePage ? "../privacy-policy.html" : "privacy-policy.html";
+  const termsHref = isServicePage ? "../terms-of-service.html" : "terms-of-service.html";
+  const cookieHref = isServicePage ? "../cookie-policy.html" : "cookie-policy.html";
+  let resizeObserver = null;
+
+  function getStoredChoice() {
+    try {
+      return window.localStorage.getItem(storageKey);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function setStoredChoice(value) {
+    try {
+      window.localStorage.setItem(storageKey, value);
+    } catch (error) {
+      return;
+    }
+  }
+
+  if (getStoredChoice()) {
+    root.style.setProperty("--cookie-notice-offset", "0px");
+    return;
+  }
+
+  const notice = document.createElement("aside");
+  notice.className = "cookie-notice";
+  notice.dataset.cookieNotice = "true";
+  notice.setAttribute("aria-label", "Cookie preferences");
+
+  const title = document.createElement("strong");
+  title.className = "cookie-notice__title";
+  title.textContent = "Cookie settings";
+
+  const copy = document.createElement("p");
+  copy.className = "cookie-notice__copy";
+  copy.textContent = "BlueRoute may use cookies and similar tools to keep the site working, remember preferences, and understand page usage.";
+
+  const links = document.createElement("div");
+  links.className = "cookie-notice__links";
+
+  [
+    { href: privacyHref, label: "Privacy Policy" },
+    { href: termsHref, label: "Terms of Service" },
+    { href: cookieHref, label: "Cookie Policy" }
+  ].forEach(function (item) {
+    const link = document.createElement("a");
+
+    link.className = "cookie-notice__link";
+    link.href = item.href;
+    link.textContent = item.label;
+    links.appendChild(link);
+  });
+
+  const actions = document.createElement("div");
+  actions.className = "cookie-notice__actions";
+
+  const acceptButton = document.createElement("button");
+  acceptButton.type = "button";
+  acceptButton.className = "cookie-notice__button cookie-notice__button--accept";
+  acceptButton.textContent = "Agree";
+
+  const declineButton = document.createElement("button");
+  declineButton.type = "button";
+  declineButton.className = "cookie-notice__button cookie-notice__button--decline";
+  declineButton.textContent = "Decline";
+
+  actions.append(acceptButton, declineButton);
+  notice.append(title, copy, links, actions);
+
+  function updateOffset() {
+    const offset = body.classList.contains("cookie-notice-visible") ? notice.offsetHeight + 20 : 0;
+    root.style.setProperty("--cookie-notice-offset", offset + "px");
+  }
+
+  function closeNotice(value) {
+    setStoredChoice(value);
+    body.classList.remove("cookie-notice-visible");
+    root.style.setProperty("--cookie-notice-offset", "0px");
+
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+    }
+
+    window.removeEventListener("resize", updateOffset);
+    notice.remove();
+  }
+
+  acceptButton.addEventListener("click", function () {
+    closeNotice("accepted");
+  });
+
+  declineButton.addEventListener("click", function () {
+    closeNotice("declined");
+  });
+
+  document.body.appendChild(notice);
+  body.classList.add("cookie-notice-visible");
+
+  if ("ResizeObserver" in window) {
+    resizeObserver = new ResizeObserver(updateOffset);
+    resizeObserver.observe(notice);
+  }
+
+  window.addEventListener("resize", updateOffset, { passive: true });
+  window.requestAnimationFrame(updateOffset);
+}
+
+function initHomeFormSheet() {
+  const sheet = document.querySelector("[data-home-form-sheet]");
+
+  if (!sheet) {
+    return;
+  }
+
+  const toggle = sheet.querySelector("[data-home-form-toggle]");
+  const toggleLabel = sheet.querySelector("[data-home-form-toggle-label]");
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
+
+  if (!toggle || toggle.dataset.sheetReady === "true") {
+    return;
+  }
+
+  toggle.dataset.sheetReady = "true";
+
+  let isOpen = false;
+  let backdrop = document.querySelector(".home-form-sheet-backdrop");
+
+  if (!backdrop) {
+    backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "home-form-sheet-backdrop";
+    backdrop.setAttribute("aria-label", "Close request form");
+    document.body.appendChild(backdrop);
+  }
+
+  function syncState() {
+    const isMobile = mobileQuery.matches;
+    const expanded = isMobile && isOpen;
+
+    sheet.classList.toggle("is-open", expanded);
+    document.body.classList.toggle("home-form-sheet-open", expanded);
+    toggle.setAttribute("aria-expanded", String(expanded));
+    toggle.setAttribute("aria-label", expanded ? "Collapse request form" : "Expand request form");
+
+    if (toggleLabel) {
+      toggleLabel.textContent = expanded ? "Tap to collapse" : "Tap to expand";
+    }
+  }
+
+  function setOpen(nextValue) {
+    isOpen = Boolean(nextValue);
+    syncState();
+  }
+
+  toggle.addEventListener("click", function () {
+    if (!mobileQuery.matches) {
+      return;
+    }
+
+    setOpen(!isOpen);
+  });
+
+  backdrop.addEventListener("click", function () {
+    setOpen(false);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      setOpen(false);
+    }
+  });
+
+  window.addEventListener("blueroute:menu-open", function () {
+    setOpen(false);
+  });
+
+  function handleViewportChange() {
+    if (!mobileQuery.matches) {
+      isOpen = false;
+    }
+
+    syncState();
+  }
+
+  if (typeof mobileQuery.addEventListener === "function") {
+    mobileQuery.addEventListener("change", handleViewportChange);
+  } else if (typeof mobileQuery.addListener === "function") {
+    mobileQuery.addListener(handleViewportChange);
+  }
+
+  syncState();
+}
+
+function initFloatingEstimateButton() {
+  if (document.querySelector("[data-floating-estimate]")) {
+    return;
+  }
+
+  const body = document.body;
+  const mobileQuery = window.matchMedia("(max-width: 980px)");
+  const isServicePage = body.classList.contains("service-page");
+  const isContactPage = body.classList.contains("contact-page");
+  const href = isContactPage ? "#estimate-form" : isServicePage ? "../contact.html#estimate-form" : "contact.html#estimate-form";
+  const button = document.createElement("a");
+  const icon = document.createElement("i");
+  const copy = document.createElement("span");
+  let lastScrollY = window.scrollY;
+  let frame = 0;
+
+  button.className = "floating-estimate-button";
+  button.href = href;
+  button.dataset.floatingEstimate = "true";
+  button.setAttribute("aria-label", "Open estimate request form");
+
+  icon.className = "fa-solid fa-file-signature";
+  icon.setAttribute("aria-hidden", "true");
+
+  copy.textContent = "Estimate";
+  button.append(icon, copy);
+
+  function syncVisibility() {
+    const isMobile = mobileQuery.matches;
+
+    body.classList.toggle("has-floating-estimate", isMobile);
+
+    if (!isMobile) {
+      button.classList.remove("is-condensed");
+    }
+  }
+
+  function syncScrollState() {
+    const currentY = window.scrollY;
+    const isMovingDown = currentY > lastScrollY + 6;
+    const isNearTop = currentY < 40;
+
+    button.classList.toggle("is-condensed", mobileQuery.matches && isMovingDown && !isNearTop);
+    lastScrollY = currentY;
+    frame = 0;
+  }
+
+  document.body.appendChild(button);
+  syncVisibility();
+  syncScrollState();
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(syncScrollState);
+    },
+    { passive: true }
+  );
+
+  if (typeof mobileQuery.addEventListener === "function") {
+    mobileQuery.addEventListener("change", syncVisibility);
+  } else if (typeof mobileQuery.addListener === "function") {
+    mobileQuery.addListener(syncVisibility);
+  }
+
+  if (isContactPage) {
+    const estimateForm = document.querySelector("#estimate-form");
+
+    if (estimateForm && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            button.classList.toggle("is-hidden", entry.isIntersecting);
+          });
+        },
+        {
+          threshold: 0.2
+        }
+      );
+
+      observer.observe(estimateForm);
+    }
+  }
+}
+
+function initInfiniteIssueGrids() {
+  const grids = Array.from(
+    document.querySelectorAll(".home-issues-section .issue-grid, .service-page .issue-grid, .services-catalog-section .catalog-shell")
+  );
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
+  const states = new WeakMap();
+
+  if (!grids.length) {
+    return;
+  }
+
+  function getOriginalItems(grid) {
+    return Array.from(grid.children).filter(function (item) {
+      return !item.classList.contains("is-loop-clone");
+    });
+  }
+
+  function setInstantScroll(grid, value) {
+    const previousBehavior = grid.style.scrollBehavior;
+
+    grid.style.scrollBehavior = "auto";
+    grid.scrollLeft = value;
+    grid.style.scrollBehavior = previousBehavior;
+  }
+
+  function prepareClone(item, setName) {
+    const clone = item.cloneNode(true);
+
+    clone.classList.add("is-loop-clone");
+    clone.dataset.cloneSet = setName;
+    clone.removeAttribute("id");
+    clone.classList.remove("reveal", "is-visible");
+    clone.removeAttribute("data-delay");
+    clone.setAttribute("aria-hidden", "true");
+
+    clone.querySelectorAll("[id]").forEach(function (node) {
+      node.removeAttribute("id");
+    });
+
+    clone.querySelectorAll("a, button, input, select, textarea").forEach(function (node) {
+      node.setAttribute("tabindex", "-1");
+    });
+
+    return clone;
+  }
+
+  function measureGrid(grid, preserveOffset) {
+    const state = states.get(grid);
+
+    if (!state || !state.enabled) {
+      return;
+    }
+
+    const originals = getOriginalItems(grid);
+    const firstOriginal = originals[0];
+    const firstAppendClone = grid.querySelector('.is-loop-clone[data-clone-set="append"]');
+
+    if (!firstOriginal || !firstAppendClone) {
+      return;
+    }
+
+    const previousAnchor = state.anchorStart || 0;
+    const previousLoopWidth = state.loopWidth || 0;
+    const relativeOffset =
+      preserveOffset && previousLoopWidth
+        ? ((grid.scrollLeft - previousAnchor) % previousLoopWidth + previousLoopWidth) % previousLoopWidth
+        : 0;
+
+    state.anchorStart = firstOriginal.offsetLeft;
+    state.loopWidth = firstAppendClone.offsetLeft - firstOriginal.offsetLeft;
+
+    if (!state.loopWidth) {
+      return;
+    }
+
+    state.hasPositioned = true;
+    setInstantScroll(grid, state.anchorStart + relativeOffset);
+  }
+
+  function onGridScroll(grid) {
+    const state = states.get(grid);
+
+    if (!state || !state.enabled || state.isAdjusting || !state.loopWidth) {
+      return;
+    }
+
+    const start = state.anchorStart;
+    const end = start + state.loopWidth;
+
+    if (grid.scrollLeft < start - 2) {
+      state.isAdjusting = true;
+      setInstantScroll(grid, grid.scrollLeft + state.loopWidth);
+      state.isAdjusting = false;
+      return;
+    }
+
+    if (grid.scrollLeft >= end - 2) {
+      state.isAdjusting = true;
+      setInstantScroll(grid, grid.scrollLeft - state.loopWidth);
+      state.isAdjusting = false;
+    }
+  }
+
+  function enableGrid(grid) {
+    const originals = getOriginalItems(grid);
+
+    if (originals.length < 2) {
+      return;
+    }
+
+    let state = states.get(grid);
+
+    if (state && state.enabled) {
+      measureGrid(grid, true);
+      return;
+    }
+
+    const prependFragment = document.createDocumentFragment();
+    const appendFragment = document.createDocumentFragment();
+
+    originals.forEach(function (item) {
+      prependFragment.appendChild(prepareClone(item, "prepend"));
+      appendFragment.appendChild(prepareClone(item, "append"));
+    });
+
+    grid.prepend(prependFragment);
+    grid.appendChild(appendFragment);
+
+    state = {
+      enabled: true,
+      hasPositioned: false,
+      isAdjusting: false,
+      anchorStart: 0,
+      loopWidth: 0,
+      onScroll: function () {
+        onGridScroll(grid);
+      }
+    };
+
+    states.set(grid, state);
+    grid.addEventListener("scroll", state.onScroll, { passive: true });
+
+    window.requestAnimationFrame(function () {
+      measureGrid(grid, false);
+    });
+  }
+
+  function disableGrid(grid) {
+    const state = states.get(grid);
+
+    if (!state || !state.enabled) {
+      return;
+    }
+
+    grid.removeEventListener("scroll", state.onScroll);
+    grid.querySelectorAll(".is-loop-clone").forEach(function (clone) {
+      clone.remove();
+    });
+
+    state.enabled = false;
+    state.hasPositioned = false;
+    state.anchorStart = 0;
+    state.loopWidth = 0;
+
+    setInstantScroll(grid, 0);
+  }
+
+  function syncGrids() {
+    grids.forEach(function (grid) {
+      if (!mobileQuery.matches) {
+        disableGrid(grid);
+        return;
+      }
+
+      const originals = getOriginalItems(grid);
+      const hasOverflow = grid.scrollWidth > grid.clientWidth + 6;
+
+      if (originals.length < 2 || !hasOverflow) {
+        disableGrid(grid);
+        return;
+      }
+
+      enableGrid(grid);
+    });
+  }
+
+  let resizeFrame = 0;
+
+  function scheduleSync() {
+    if (resizeFrame) {
+      window.cancelAnimationFrame(resizeFrame);
+    }
+
+    resizeFrame = window.requestAnimationFrame(function () {
+      syncGrids();
+    });
+  }
+
+  if (typeof mobileQuery.addEventListener === "function") {
+    mobileQuery.addEventListener("change", scheduleSync);
+  } else if (typeof mobileQuery.addListener === "function") {
+    mobileQuery.addListener(scheduleSync);
+  }
+
+  window.addEventListener("resize", scheduleSync, { passive: true });
+
+  syncGrids();
+}
 
 function initSiteSearch() {
   const items = [

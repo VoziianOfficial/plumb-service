@@ -85,9 +85,19 @@
 }
 
 @media (max-width: 760px) {
+  .about-hero::before {
+    display: none;
+  }
+
   .about-hero-media {
     width: 100%;
     justify-self: stretch;
+  }
+
+  .about-hero-collage .media-overlay {
+    padding: 0.95rem 0.95rem 0.9rem;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .about-hero-collage .media-tile {
@@ -96,5 +106,10 @@
 
   .about-side-panel {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .about-side-panel .glass-panel {
+    padding: 1rem;
   }
 }

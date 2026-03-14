@@ -8,7 +8,8 @@
       content="Review every plumbing request category available through BlueRoute Plumbing Network, from emergency issues and drain problems to water heaters, leaks, installations, fixtures, and full system replacement."
     />
     <title>Services | BlueRoute Plumbing Network</title>
-    <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="images/icons/favicon.svg?v=3" />
+    <link rel="shortcut icon" href="images/icons/favicon.svg?v=3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -166,11 +167,14 @@
             <article class="catalog-card reveal" data-delay="2">
               <span class="preview-index">03</span>
               <figure class="media-tile media-tile--catalog">
-                <img
-                  src="images/service-pages/bathroom.jpg"
-                  alt="Bathroom interior prepared for plumbing-related installation work"
-                  loading="lazy"
-                />
+                <picture class="catalog-mobile-picture">
+                  <source media="(max-width: 760px)" srcset="images/about/small-bathroom-with-modern-style.jpg" />
+                  <img
+                    src="images/service-pages/bathroom.jpg"
+                    alt="Bathroom interior prepared for plumbing-related installation work"
+                    loading="lazy"
+                  />
+                </picture>
                 <figcaption class="media-overlay">
                   <strong>Installation planning</strong>
                   <span>Ideal for remodels, additions, and new plumbing layouts.</span>
