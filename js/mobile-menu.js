@@ -5,6 +5,8 @@
     const navList = nav ? nav.querySelector(".nav-list") : null;
     const body = document.body;
     const mobileQuery = window.matchMedia("(max-width: 980px)");
+    const originalNavParent = nav ? nav.parentNode : null;
+    const navPlaceholder = nav ? document.createComment("mobile-nav-placeholder") : null;
     const isServicePage = body.classList.contains("service-page");
     const cookieHref = isServicePage ? "../cookie-policy.html#manage-cookies" : "cookie-policy.html#manage-cookies";
     const serviceItems = [
@@ -22,6 +24,35 @@
     if (!toggle || !nav || !navList) {
       return;
     }
+
+    if (originalNavParent && navPlaceholder && !navPlaceholder.parentNode) {
+      originalNavParent.insertBefore(navPlaceholder, nav);
+    }
+
+    const restoreNavToHeader = () => {
+      if (!originalNavParent || !navPlaceholder || nav.parentNode === originalNavParent) {
+        return;
+      }
+
+      originalNavParent.insertBefore(nav, navPlaceholder.nextSibling);
+    };
+
+    const mountNavToBody = () => {
+      if (nav.parentNode === body) {
+        return;
+      }
+
+      body.appendChild(nav);
+    };
+
+    const syncNavMount = () => {
+      if (mobileQuery.matches) {
+        mountNavToBody();
+        return;
+      }
+
+      restoreNavToHeader();
+    };
 
     if (!nav.querySelector(".mobile-nav-services")) {
       const servicesLink = Array.from(navList.querySelectorAll(".nav-link")).find(function (link) {
@@ -171,11 +202,14 @@
         return;
       }
 
+      syncNavMount();
       document.body.classList.add("menu-open");
       toggle.setAttribute("aria-expanded", "true");
       navList.scrollTop = 0;
       window.dispatchEvent(new Event("blueroute:menu-open"));
     };
+
+    syncNavMount();
 
     toggle.addEventListener("click", function () {
       const isOpen = document.body.classList.contains("menu-open");
@@ -204,7 +238,27 @@
       if (window.innerWidth > 980) {
         closeMenu();
       }
+
+      syncNavMount();
     });
+
+    if (typeof mobileQuery.addEventListener === "function") {
+      mobileQuery.addEventListener("change", function (event) {
+        if (!event.matches) {
+          closeMenu();
+        }
+
+        syncNavMount();
+      });
+    } else if (typeof mobileQuery.addListener === "function") {
+      mobileQuery.addListener(function (event) {
+        if (!event.matches) {
+          closeMenu();
+        }
+
+        syncNavMount();
+      });
+    }
   }
 
   window.BlueRouteMenu = { init: initMobileMenu };
