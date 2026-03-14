@@ -2171,7 +2171,8 @@ body.menu-open .floating-estimate-button {
 
 @media (max-width: 980px) {
   body.menu-open {
-    overflow: hidden;
+    overflow: auto;
+    overscroll-behavior: auto;
   }
 
   .floating-estimate-button {
@@ -2196,6 +2197,8 @@ body.menu-open .floating-estimate-button {
   .site-nav {
     position: fixed;
     inset: 0;
+    height: 100dvh;
+    min-height: 100dvh;
     z-index: 90;
     display: grid;
     justify-items: stretch;
@@ -2234,10 +2237,10 @@ body.menu-open .floating-estimate-button {
     flex-direction: column;
     align-items: stretch;
     gap: 0.45rem;
-    max-height: none;
+    max-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
-    overscroll-behavior-y: contain;
+    overscroll-behavior-y: auto;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
     padding:

@@ -250,8 +250,6 @@ function initFloatingEstimateButton() {
   const button = document.createElement("a");
   const icon = document.createElement("i");
   const copy = document.createElement("span");
-  let lastScrollY = window.scrollY;
-  let frame = 0;
 
   button.className = "floating-estimate-button";
   button.href = href;
@@ -275,35 +273,23 @@ function initFloatingEstimateButton() {
   }
 
   function syncScrollState() {
-    const currentY = window.scrollY;
-    const isMovingDown = currentY > lastScrollY + 6;
-    const isNearTop = currentY < 40;
-
-    button.classList.toggle("is-condensed", mobileQuery.matches && isMovingDown && !isNearTop);
-    lastScrollY = currentY;
-    frame = 0;
+    button.classList.remove("is-condensed");
   }
 
   document.body.appendChild(button);
   syncVisibility();
   syncScrollState();
 
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (frame) {
-        return;
-      }
-
-      frame = window.requestAnimationFrame(syncScrollState);
-    },
-    { passive: true }
-  );
-
   if (typeof mobileQuery.addEventListener === "function") {
-    mobileQuery.addEventListener("change", syncVisibility);
+    mobileQuery.addEventListener("change", function () {
+      syncVisibility();
+      syncScrollState();
+    });
   } else if (typeof mobileQuery.addListener === "function") {
-    mobileQuery.addListener(syncVisibility);
+    mobileQuery.addListener(function () {
+      syncVisibility();
+      syncScrollState();
+    });
   }
 
   if (isContactPage) {

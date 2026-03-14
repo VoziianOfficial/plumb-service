@@ -158,14 +158,23 @@
     }
 
     const closeMenu = () => {
+      if (!document.body.classList.contains("menu-open")) {
+        return;
+      }
+
       document.body.classList.remove("menu-open");
       toggle.setAttribute("aria-expanded", "false");
     };
 
     const openMenu = () => {
+      if (document.body.classList.contains("menu-open")) {
+        return;
+      }
+
       document.body.classList.add("menu-open");
       toggle.setAttribute("aria-expanded", "true");
       navList.scrollTop = 0;
+      window.dispatchEvent(new Event("blueroute:menu-open"));
     };
 
     toggle.addEventListener("click", function () {
