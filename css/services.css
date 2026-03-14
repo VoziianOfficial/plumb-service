@@ -333,12 +333,13 @@
   .services-catalog-section .catalog-shell {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(16.5rem, 82%);
-    gap: 0.9rem;
+    grid-auto-columns: minmax(16.5rem, 84%);
+    gap: 1rem;
     overflow-x: auto;
-    padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: 0.05rem;
+    overflow-y: hidden;
+    padding: 0.08rem 0.7rem 0.7rem 0.08rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.4rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;

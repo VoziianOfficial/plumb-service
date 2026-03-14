@@ -2317,15 +2317,28 @@
   }
 
   .home-page .service-carousel__track.service-grid {
-    grid-auto-columns: 84%;
-    gap: 1rem;
+    grid-auto-columns: minmax(17rem, 86%);
+    gap: 0.95rem;
   }
 
   .home-page .service-carousel__viewport {
-    padding-bottom: 0.65rem;
+    padding: 0.08rem 0.7rem 0.9rem 0.08rem;
+    margin: 0 -0.45rem 0 0;
+    scroll-behavior: auto;
+    scroll-padding-inline: 0.4rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
     overscroll-behavior-x: contain;
-    touch-action: pan-x;
-    scroll-snap-type: x proximity;
+    touch-action: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .home-page .service-carousel__viewport.is-mobile-mode {
+    cursor: auto;
+  }
+
+  .home-page .service-carousel__viewport.is-mobile-mode.is-dragging {
+    scroll-snap-type: x mandatory;
   }
 
   .storyboard-feature__copy,
@@ -2397,16 +2410,17 @@
   .home-issues-section .issue-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(16.8rem, 82%);
-    gap: 0.95rem;
+    grid-auto-columns: minmax(16.8rem, 84%);
+    gap: 1rem;
     overflow-x: auto;
-    padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: 0.05rem;
+    overflow-y: hidden;
+    padding: 0.08rem 0.7rem 0.7rem 0.08rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.4rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
-    touch-action: pan-x;
+    touch-action: auto;
   }
 
   .home-issues-section .issue-grid::-webkit-scrollbar {
@@ -2456,16 +2470,17 @@
   .home-page .stats-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(16.5rem, 82%);
-    gap: 0.95rem;
+    grid-auto-columns: minmax(16.5rem, 84%);
+    gap: 1rem;
     overflow-x: auto;
-    padding: 0.05rem 0.35rem 0.5rem 0.05rem;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: 0.05rem;
+    overflow-y: hidden;
+    padding: 0.08rem 0.7rem 0.7rem 0.08rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.4rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
-    touch-action: pan-x;
+    touch-action: auto;
   }
 
   .home-page .stats-grid::-webkit-scrollbar {
@@ -2584,7 +2599,7 @@
   }
 
   .home-issues-section .issue-grid {
-    grid-auto-columns: 86%;
+    grid-auto-columns: 87%;
   }
 
   .home-page .stats-grid {

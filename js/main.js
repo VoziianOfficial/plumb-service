@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initHeroSlideshows();
   initHomeFormSheet();
   initFloatingEstimateButton();
-  initTouchSnapGrids();
-  initInfiniteIssueGrids();
+  initInfiniteSwipeGrids();
   initSiteSearch();
   initServiceCarousels();
 
@@ -313,128 +312,11 @@ function initFloatingEstimateButton() {
   }
 }
 
-function initTouchSnapGrids() {
-  const grids = Array.from(document.querySelectorAll(".home-page .stats-grid, .service-page .benefit-grid, .service-page .service-process-grid"));
-  const mobileQuery = window.matchMedia("(max-width: 760px)");
-  const states = new WeakMap();
-
-  if (!grids.length) {
-    return;
-  }
-
-  function hasOverflow(grid) {
-    return mobileQuery.matches && grid.scrollWidth > grid.clientWidth + 6;
-  }
-
-  function snapToNearest(grid) {
-    const items = Array.from(grid.children);
-    let target = null;
-    let bestDistance = Number.POSITIVE_INFINITY;
-
-    items.forEach(function (item) {
-      const distance = Math.abs(item.offsetLeft - grid.scrollLeft);
-
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        target = item;
-      }
-    });
-
-    if (!target) {
-      return;
-    }
-
-    grid.scrollTo({
-      left: target.offsetLeft,
-      behavior: "smooth"
-    });
-  }
-
-  function scheduleSnap(grid) {
-    const state = states.get(grid);
-
-    if (!state) {
-      return;
-    }
-
-    window.clearTimeout(state.snapTimer);
-    state.snapTimer = window.setTimeout(function () {
-      grid.classList.remove("is-touch-dragging");
-
-      if (hasOverflow(grid)) {
-        snapToNearest(grid);
-      }
-    }, 120);
-  }
-
-  grids.forEach(function (grid) {
-    const state = {
-      touchActive: false,
-      snapTimer: 0
-    };
-
-    function handleStart(event) {
-      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
-
-      if (!isTouchEvent || !hasOverflow(grid)) {
-        return;
-      }
-
-      state.touchActive = true;
-      window.clearTimeout(state.snapTimer);
-      grid.classList.add("is-touch-dragging");
-    }
-
-    function handleEnd(event) {
-      const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
-
-      if (!isTouchEvent || !state.touchActive) {
-        return;
-      }
-
-      state.touchActive = false;
-      scheduleSnap(grid);
-    }
-
-    function handleScroll() {
-      if (!grid.classList.contains("is-touch-dragging")) {
-        return;
-      }
-
-      if (!state.touchActive) {
-        scheduleSnap(grid);
-      }
-    }
-
-    function handleResize() {
-      if (hasOverflow(grid)) {
-        return;
-      }
-
-      window.clearTimeout(state.snapTimer);
-      grid.classList.remove("is-touch-dragging");
-    }
-
-    states.set(grid, state);
-    grid.addEventListener("scroll", handleScroll, { passive: true });
-
-    if (window.PointerEvent) {
-      grid.addEventListener("pointerdown", handleStart, { passive: true });
-      grid.addEventListener("pointerup", handleEnd, { passive: true });
-      grid.addEventListener("pointercancel", handleEnd, { passive: true });
-    } else {
-      grid.addEventListener("touchstart", handleStart, { passive: true });
-      grid.addEventListener("touchend", handleEnd, { passive: true });
-      grid.addEventListener("touchcancel", handleEnd, { passive: true });
-    }
-
-    window.addEventListener("resize", handleResize, { passive: true });
-  });
-}
-
-function initInfiniteIssueGrids() {
+function initInfiniteSwipeGrids() {
   const grids = Array.from(
-    document.querySelectorAll(".home-issues-section .issue-grid, .service-page .issue-grid, .services-catalog-section .catalog-shell")
+    document.querySelectorAll(
+      ".home-page .stats-grid, .home-issues-section .issue-grid, .services-catalog-section .catalog-shell, .service-page .issue-grid, .service-page .benefit-grid, .service-page .service-process-grid"
+    )
   );
   const mobileQuery = window.matchMedia("(max-width: 760px)");
   const states = new WeakMap();
@@ -716,14 +598,22 @@ function initInfiniteIssueGrids() {
   }
 
   let resizeFrame = 0;
+  let settleFrame = 0;
 
   function scheduleSync() {
     if (resizeFrame) {
       window.cancelAnimationFrame(resizeFrame);
     }
 
+    if (settleFrame) {
+      window.cancelAnimationFrame(settleFrame);
+    }
+
     resizeFrame = window.requestAnimationFrame(function () {
       syncGrids();
+      settleFrame = window.requestAnimationFrame(function () {
+        syncGrids();
+      });
     });
   }
 
@@ -734,8 +624,20 @@ function initInfiniteIssueGrids() {
   }
 
   window.addEventListener("resize", scheduleSync, { passive: true });
+  window.addEventListener("orientationchange", scheduleSync, { passive: true });
+
+  if ("ResizeObserver" in window) {
+    grids.forEach(function (grid) {
+      const observer = new ResizeObserver(function () {
+        scheduleSync();
+      });
+
+      observer.observe(grid);
+    });
+  }
 
   syncGrids();
+  scheduleSync();
 }
 
 function initSiteSearch() {
@@ -890,11 +792,14 @@ function initMediaOverlayLinks() {
 
 function initServiceCarousels() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
 
   document.querySelectorAll("[data-service-carousel]").forEach(function (carousel) {
     const viewport = carousel.querySelector("[data-carousel-viewport]");
     const track = carousel.querySelector(".service-carousel__track");
-    const originalCards = Array.from(track.querySelectorAll(".card--service"));
+    const originalCards = Array.from(track.querySelectorAll(".card--service")).filter(function (card) {
+      return !card.classList.contains("is-clone");
+    });
     const prevButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
     const dots = carousel.querySelector("[data-carousel-dots]");
@@ -912,8 +817,14 @@ function initServiceCarousels() {
     let dragStartX = 0;
     let dragStartScroll = 0;
     let resizeFrame = 0;
+    let settleFrame = 0;
     let scrollTimer = 0;
     let isJumping = false;
+    let hasDesktopLoop = false;
+
+    function isMobileMode() {
+      return mobileQuery.matches;
+    }
 
     function setLoopIndex(card, index) {
       card.dataset.loopIndex = String(index);
@@ -939,7 +850,11 @@ function initServiceCarousels() {
       setLoopIndex(card, index);
     });
 
-    if (originalCards.length > 1) {
+    function enableDesktopLoop() {
+      if (hasDesktopLoop || originalCards.length <= 1) {
+        return;
+      }
+
       const prependFragment = document.createDocumentFragment();
       const appendFragment = document.createDocumentFragment();
 
@@ -950,6 +865,7 @@ function initServiceCarousels() {
 
       track.prepend(prependFragment);
       track.appendChild(appendFragment);
+      hasDesktopLoop = true;
     }
 
     function clampIndex(index) {
@@ -1025,7 +941,7 @@ function initServiceCarousels() {
     }
 
     function normalizeLoopPosition() {
-      if (originalCards.length <= 1) {
+      if (!hasDesktopLoop || originalCards.length <= 1) {
         updateUi();
         return;
       }
@@ -1041,6 +957,11 @@ function initServiceCarousels() {
     }
 
     function scheduleNormalize() {
+      if (!hasDesktopLoop) {
+        updateUi();
+        return;
+      }
+
       window.clearTimeout(scrollTimer);
       scrollTimer = window.setTimeout(normalizeLoopPosition, reduceMotion ? 40 : 120);
     }
@@ -1075,7 +996,7 @@ function initServiceCarousels() {
       updateUi();
     }
 
-    function scrollToRealIndex(index) {
+    function scrollToRealIndex(index, behavior) {
       const nextCard = originalCards[clampIndex(index)];
 
       if (!nextCard) {
@@ -1084,11 +1005,11 @@ function initServiceCarousels() {
 
       viewport.scrollTo({
         left: nextCard.offsetLeft,
-        behavior: reduceMotion ? "auto" : "smooth"
+        behavior: reduceMotion ? "auto" : behavior || "smooth"
       });
     }
 
-    function scrollToSlidePosition(position) {
+    function scrollToSlidePosition(position, behavior) {
       const nextSlide = slides[Math.max(0, Math.min(slides.length - 1, position))];
 
       if (!nextSlide) {
@@ -1097,7 +1018,39 @@ function initServiceCarousels() {
 
       viewport.scrollTo({
         left: nextSlide.offsetLeft,
-        behavior: reduceMotion ? "auto" : "smooth"
+        behavior: reduceMotion ? "auto" : behavior || "smooth"
+      });
+    }
+
+    function syncMode(preserveIndex) {
+      activeIndex = clampIndex(preserveIndex ? realIndexForPosition(nearestSlidePosition()) : activeIndex);
+
+      window.clearTimeout(scrollTimer);
+      pointerActive = false;
+      dragMoved = false;
+      dragPointerId = null;
+      isJumping = false;
+
+      viewport.classList.remove("is-dragging");
+      viewport.classList.remove("is-touch-scrolling");
+      viewport.classList.toggle("is-mobile-mode", isMobileMode());
+
+      if (isMobileMode()) {
+        enableDesktopLoop();
+        measure();
+
+        window.requestAnimationFrame(function () {
+          jumpToRealIndex(activeIndex);
+        });
+
+        return;
+      }
+
+      enableDesktopLoop();
+      measure();
+
+      window.requestAnimationFrame(function () {
+        jumpToRealIndex(activeIndex);
       });
     }
 
@@ -1106,9 +1059,15 @@ function initServiceCarousels() {
         window.cancelAnimationFrame(resizeFrame);
       }
 
+      if (settleFrame) {
+        window.cancelAnimationFrame(settleFrame);
+      }
+
       resizeFrame = window.requestAnimationFrame(function () {
-        measure();
-        jumpToRealIndex(activeIndex);
+        syncMode(true);
+        settleFrame = window.requestAnimationFrame(function () {
+          syncMode(true);
+        });
       });
     }
 
@@ -1130,7 +1089,7 @@ function initServiceCarousels() {
         scrollToSlidePosition(nearestSlidePosition());
       }
 
-      if (originalCards.length > 1) {
+      if (hasDesktopLoop) {
         scheduleNormalize();
       }
 
@@ -1140,20 +1099,16 @@ function initServiceCarousels() {
     }
 
     buildDots();
-    measure();
-
-    if (originalCards.length > 1) {
-      jumpToRealIndex(0);
-    }
+    syncMode(false);
 
     viewport.addEventListener(
       "scroll",
       function () {
         if (!isJumping) {
           updateUi();
-          if (pointerActive) {
+          if (hasDesktopLoop && pointerActive) {
             window.clearTimeout(scrollTimer);
-          } else {
+          } else if (hasDesktopLoop) {
             scheduleNormalize();
           }
         }
@@ -1210,28 +1165,23 @@ function initServiceCarousels() {
     function startTouchSwipe(event) {
       const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
 
-      if (!isTouchEvent) {
+      if (!isTouchEvent || !isMobileMode()) {
         return;
       }
 
-      viewport.classList.add("is-dragging");
+      viewport.classList.add("is-touch-scrolling");
       window.clearTimeout(scrollTimer);
     }
 
     function endTouchSwipe(event) {
       const isTouchEvent = event.type.indexOf("touch") === 0 || event.pointerType === "touch";
 
-      if (!isTouchEvent) {
+      if (!isTouchEvent || !isMobileMode()) {
         return;
       }
 
-      viewport.classList.remove("is-dragging");
-
-      if (originalCards.length > 1) {
-        scheduleNormalize();
-      } else {
-        updateUi();
-      }
+      viewport.classList.remove("is-touch-scrolling");
+      updateUi();
     }
 
     if (window.PointerEvent) {
@@ -1245,7 +1195,7 @@ function initServiceCarousels() {
     }
 
     viewport.addEventListener("pointerdown", function (event) {
-      if (event.pointerType === "touch" || event.button !== 0) {
+      if (isMobileMode() || event.pointerType === "touch" || event.button !== 0) {
         return;
       }
 
@@ -1289,7 +1239,7 @@ function initServiceCarousels() {
 
     track.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function (event) {
-        if (!dragMoved) {
+        if (!dragMoved || isMobileMode()) {
           return;
         }
 
@@ -1298,6 +1248,18 @@ function initServiceCarousels() {
     });
 
     window.addEventListener("resize", requestMeasure);
+
+    if (typeof mobileQuery.addEventListener === "function") {
+      mobileQuery.addEventListener("change", requestMeasure);
+    } else if (typeof mobileQuery.addListener === "function") {
+      mobileQuery.addListener(requestMeasure);
+    }
+
+    if ("ResizeObserver" in window) {
+      const observer = new ResizeObserver(requestMeasure);
+      observer.observe(viewport);
+      observer.observe(track);
+    }
   });
 }
 
