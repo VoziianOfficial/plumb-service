@@ -1,0 +1,92 @@
+.about-hero {
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: 42vw;
+  height: 420px;
+  background: linear-gradient(135deg, rgba(101, 217, 255, 0.16), rgba(255, 139, 99, 0.1));
+  border-bottom-left-radius: 120px;
+  pointer-events: none;
+}
+
+.about-hero-media {
+  display: grid;
+  gap: 1rem;
+  width: min(100%, 29rem);
+  justify-self: end;
+}
+
+.about-hero-collage {
+  display: block;
+}
+
+.about-hero-collage .media-tile {
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.about-hero-collage .about-hero-photo,
+.about-hero-collage .media-tile--showcase.is-tall {
+  aspect-ratio: 1 / 1;
+}
+
+.about-hero-collage .about-hero-photo img {
+  object-position: center 42%;
+}
+
+.about-hero-collage .media-overlay {
+  padding: 1.2rem 1.2rem 1.05rem;
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 280ms ease, transform 360ms ease;
+}
+
+.about-hero-collage .media-overlay strong {
+  font-size: 1rem;
+}
+
+.about-hero-collage .media-overlay span {
+  font-size: 0.92rem;
+  line-height: 1.42;
+}
+
+.about-hero-collage .about-hero-photo:hover .media-overlay,
+.about-hero-collage .about-hero-photo:focus-within .media-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-side-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-page .visual-frame {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 177, 114, 0.18), transparent 28%),
+    linear-gradient(180deg, #ffffff, #f0e7dc);
+}
+
+.about-mission-band .content-card {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 760px) {
+  .about-hero-media {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .about-hero-collage .media-tile {
+    aspect-ratio: 1 / 1;
+  }
+
+  .about-side-panel {
+    grid-template-columns: 1fr;
+  }
+}

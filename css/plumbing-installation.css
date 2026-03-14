@@ -1,0 +1,19 @@
+.service-installation .service-hero::before {
+  content: "";
+  position: absolute;
+  left: -90px;
+  top: 24px;
+  width: 360px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 177, 114, 0.18), transparent 72%);
+}
+
+.service-installation .visual-frame {
+  background: linear-gradient(180deg, #f6efe6, #ece1d2);
+}
+
+.service-installation .service-focus-card,
+.service-installation .icon-badge {
+  background: linear-gradient(135deg, rgba(255, 177, 114, 0.18), rgba(44, 139, 255, 0.16));
+}

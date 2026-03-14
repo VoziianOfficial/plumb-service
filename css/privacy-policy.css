@@ -1,0 +1,13 @@
+.privacy-policy-page .legal-hero {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(101, 217, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 100% 100%, rgba(255, 139, 99, 0.16), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(241, 233, 222, 0.5));
+}
+
+.privacy-policy-page .legal-summary-card {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(101, 217, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.86)),
+    #ffffff;
+}

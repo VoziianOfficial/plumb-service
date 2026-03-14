@@ -1,0 +1,18 @@
+.service-replacement .service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 -40px auto auto;
+  width: 420px;
+  height: 320px;
+  border-bottom-left-radius: 120px;
+  background: linear-gradient(135deg, rgba(18, 32, 51, 0.16), rgba(255, 139, 99, 0.12));
+}
+
+.service-replacement .visual-frame {
+  background: linear-gradient(180deg, #16263c, #0c141e);
+}
+
+.service-replacement .service-focus-card,
+.service-replacement .icon-badge {
+  background: linear-gradient(135deg, rgba(255, 139, 99, 0.16), rgba(44, 139, 255, 0.14));
+}

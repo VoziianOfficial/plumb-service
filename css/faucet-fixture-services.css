@@ -1,0 +1,19 @@
+.service-fixture .service-hero::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  bottom: 20px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 177, 114, 0.16), transparent 72%);
+}
+
+.service-fixture .visual-frame {
+  background: linear-gradient(180deg, #132640, #0a131d);
+}
+
+.service-fixture .service-focus-card,
+.service-fixture .icon-badge {
+  background: linear-gradient(135deg, rgba(255, 177, 114, 0.16), rgba(255, 139, 99, 0.14));
+}

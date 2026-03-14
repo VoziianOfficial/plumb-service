@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">BlueRoute Plumbing logo</title>
+  <desc id="desc">Abstract route and water flow mark inside a rounded square.</desc>
+  <defs>
+    <linearGradient id="bg" x1="18" y1="12" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0e2036"/>
+      <stop offset="1" stop-color="#09131f"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="24" y1="24" x2="102" y2="98" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#65d9ff"/>
+      <stop offset="1" stop-color="#2c8bff"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="70" y1="36" x2="100" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb172"/>
+      <stop offset="1" stop-color="#ff764d"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="32" fill="url(#bg)"/>
+  <path d="M28 77c0-17 13-30 30-30h11c11 0 20-9 20-20" fill="none" stroke="#e9f4ff" stroke-linecap="round" stroke-width="12"/>
+  <path d="M91 27c7 9 10 14 10 21 0 10-8 18-18 18s-18-8-18-18c0-7 3-12 12-21z" fill="url(#spark)"/>
+  <path d="M31 88c8-7 17-10 27-10h13c17 0 30 13 30 30" fill="none" stroke="url(#flow)" stroke-linecap="round" stroke-width="12"/>
+  <circle cx="29" cy="77" r="8" fill="#65d9ff"/>
+  <circle cx="101" cy="108" r="8" fill="#ffb172"/>
+</svg>

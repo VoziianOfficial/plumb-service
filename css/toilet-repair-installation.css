@@ -1,0 +1,19 @@
+.service-toilet .service-hero::before {
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: 20px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 139, 99, 0.18), transparent 72%);
+}
+
+.service-toilet .visual-frame {
+  background: linear-gradient(180deg, #1d283d, #0b1520);
+}
+
+.service-toilet .service-focus-card,
+.service-toilet .icon-badge {
+  background: linear-gradient(135deg, rgba(255, 139, 99, 0.18), rgba(101, 217, 255, 0.14));
+}

@@ -1,0 +1,19 @@
+.service-leak .service-hero::before {
+  content: "";
+  position: absolute;
+  right: -100px;
+  bottom: 40px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(101, 217, 255, 0.2), transparent 72%);
+}
+
+.service-leak .visual-frame {
+  background: linear-gradient(180deg, #11273f, #08111c);
+}
+
+.service-leak .service-focus-card,
+.service-leak .icon-badge {
+  background: linear-gradient(135deg, rgba(101, 217, 255, 0.16), rgba(255, 139, 99, 0.14));
+}

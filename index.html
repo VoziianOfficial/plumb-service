@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BlueRoute Plumbing Network is a homeowner-focused plumbing request platform for urgent calls, estimate requests, and local contractor matching across leaks, drains, heaters, fixtures, and larger plumbing projects."
+    />
+    <title>BlueRoute Plumbing Network | Plumbing Request Matching for Homeowners</title>
+    <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/home.css" />
+  </head>
+  <body class="home-page">
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="index.html" aria-label="BlueRoute Plumbing home">
+          <img src="images/branding/logo-mark.svg" alt="BlueRoute Plumbing logo mark" />
+          <div class="brand-text">
+            <strong>BlueRoute Plumbing</strong>
+            <span>Local plumbing contractor matching</span>
+          </div>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation" data-menu>
+          <div class="nav-list">
+            <a class="nav-link is-active" href="index.html" aria-current="page">Home</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="services.html">Services</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <a class="phone-chip" href="tel:+13125550184">
+            <i class="fa-solid fa-phone-volume"></i>
+            (312) 555-0184
+          </a>
+          <a class="btn btn--primary" href="contact.html#estimate-form">
+            <i class="fa-solid fa-file-signature"></i>
+            Get Estimate
+          </a>
+        </div>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          data-menu-toggle
+        >
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero home-hero">
+        <div class="home-hero-backdrop" data-hero-slideshow aria-hidden="true">
+          <figure class="home-hero-backdrop__slide is-active" data-hero-slide>
+            <img
+              src="images/home/modern-minimalist-bathroom.jpg"
+              alt=""
+              loading="eager"
+            />
+          </figure>
+          <figure class="home-hero-backdrop__slide" data-hero-slide>
+            <img
+              src="images/home/new-kitchen-room.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </figure>
+          <figure class="home-hero-backdrop__slide" data-hero-slide>
+            <img
+              src="images/home/plumber-repair-experienced.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </figure>
+          <figure class="home-hero-backdrop__slide" data-hero-slide>
+            <img
+              src="images/home/faucet-water-tap.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </figure>
+          <figure class="home-hero-backdrop__slide" data-hero-slide>
+            <img
+              src="images/home/master-repeir.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </figure>
+          <figure class="home-hero-backdrop__slide" data-hero-slide>
+            <img
+              src="images/home/plumbing-repair-service.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </figure>
+        </div>
+        <div class="hero-accent hero-accent--one" data-parallax="18" aria-hidden="true"></div>
+        <div class="hero-accent hero-accent--two" data-parallax="-14" aria-hidden="true"></div>
+        <div class="container">
+          <div class="hero-search-lane reveal">
+            <div class="hero-site-search" data-site-search>
+              <div class="hero-site-search__topline">
+                <span class="hero-site-search__label">Search The Site</span>
+                <span class="hero-site-search__meta">Pages, services, and request paths</span>
+              </div>
+              <form class="hero-site-search__form" role="search" data-site-search-form>
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input
+                  id="hero-site-search-input"
+                  type="search"
+                  name="site_search"
+                  placeholder="Search pages, services, or plumbing request types"
+                  aria-label="Search pages and services"
+                  autocomplete="off"
+                  data-site-search-input
+                />
+                <button class="hero-site-search__button" type="submit">Go</button>
+              </form>
+              <div class="hero-site-search__quick">
+                <a href="services.html">All Services</a>
+                <a href="service-pages/emergency-plumbing-help.html">Emergency Help</a>
+                <a href="contact.html">Contact</a>
+              </div>
+              <div class="hero-site-search__results" data-site-search-results hidden></div>
+            </div>
+          </div>
+        </div>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow"><i class="fa-solid fa-route"></i> Plumbing RTB Platform</span>
+            <h1><span>Start the Right Plumbing Request</span> for Your Home <em>and ZIP Code</em></h1>
+            <p>
+              BlueRoute helps homeowners take the right first step when something leaks, backs up, or needs an upgrade. Call for urgent situations, or send an estimate request to connect with independent local contractors for drains, leaks, water heaters, fixtures, installations, and larger system work.
+            </p>
+            <div class="hero-trust">
+              <span class="trust-text"><i class="fa-solid fa-shield-heart"></i> Aggregator platform, not a direct plumbing contractor</span>
+              <span class="trust-text"><i class="fa-solid fa-location-dot"></i> Local matching by issue type and ZIP code</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="tel:+13125550184">
+                <i class="fa-solid fa-phone-volume"></i>
+                Call Now
+              </a>
+              <a class="btn btn--secondary" href="#home-estimate-form">
+                <i class="fa-solid fa-file-signature"></i>
+                Request Estimate
+              </a>
+            </div>
+            <div class="hero-metric-grid">
+              <article class="hero-metric-card">
+                <strong>21.4K+</strong>
+                <span>homeowner plumbing requests submitted</span>
+              </article>
+              <article class="hero-metric-card">
+                <strong>150+</strong>
+                <span>local contractor partners in active markets</span>
+              </article>
+              <article class="hero-metric-card">
+                <strong>24/7</strong>
+                <span>live call path for urgent plumbing issues</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero-side-stack reveal" data-delay="1">
+            <div class="form-card home-form-card reveal" data-delay="2">
+              <div class="home-form-head">
+                <div class="section-copy home-form-copy">
+                  <span class="section-kicker"><i class="fa-solid fa-paper-plane"></i> Start Your Request</span>
+                  <h2>Start a request in under a minute</h2>
+                  <p class="lede">Share the issue, room, and timing so the platform can route the request toward the most relevant local contractor follow-up.</p>
+                </div>
+                <a class="home-form-inline-call" href="tel:+13125550184">
+                  <i class="fa-solid fa-phone-volume"></i>
+                  Call for urgent issues
+                </a>
+              </div>
+              <div class="form-note-row home-form-note-row">
+                <span class="form-note-chip"><i class="fa-solid fa-clock"></i> Usually under 30 seconds</span>
+                <span class="form-note-chip"><i class="fa-solid fa-user-group"></i> Independent local providers</span>
+              </div>
+              <form class="lead-form lead-form--panel home-lead-form" data-form id="home-estimate-form" novalidate>
+                <div class="form-grid home-form-grid">
+                  <div class="field">
+                    <label for="home-full-name">Full Name</label>
+                    <input id="home-full-name" name="full_name" type="text" placeholder="Taylor Morgan" />
+                  </div>
+                  <div class="field">
+                    <label for="home-phone-number">Phone Number</label>
+                    <input id="home-phone-number" name="phone_number" type="tel" placeholder="(312) 555-0184" />
+                  </div>
+                  <div class="field">
+                    <label for="home-zip-code">ZIP Code</label>
+                    <input id="home-zip-code" name="zip_code" type="text" placeholder="60613" />
+                  </div>
+                  <div class="field">
+                    <label for="home-service-needed">Service Needed</label>
+                    <select id="home-service-needed" name="service_needed">
+                      <option value="">Select a category</option>
+                      <option>Emergency Plumbing Help</option>
+                      <option>Drain &amp; Pipe Cleaning</option>
+                      <option>Plumbing Installation Solutions</option>
+                      <option>Plumbing System Replacement</option>
+                      <option>Leak Detection Services</option>
+                      <option>Water Heater Repair &amp; Setup</option>
+                      <option>Toilet Repair &amp; Installation</option>
+                      <option>Faucet &amp; Fixture Upgrades</option>
+                    </select>
+                  </div>
+                  <div class="field field--full">
+                    <label for="home-message">Message</label>
+                    <textarea
+                      id="home-message"
+                      name="message"
+                      placeholder="Tell us what is happening, how urgent it feels, and which part of the home is affected."
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="home-form-footer">
+                  <div class="form-meta-row home-form-meta">
+                    <span><i class="fa-solid fa-user-group"></i> Routed to independent local contractors</span>
+                    <span><i class="fa-solid fa-phone-volume"></i> Call path for urgent issues</span>
+                  </div>
+                  <p class="home-form-disclaimer">
+                    BlueRoute helps connect homeowners with independent providers and does not perform plumbing work directly.
+                  </p>
+                </div>
+                <button class="btn btn--primary btn--block home-form-submit" type="submit">
+                  <i class="fa-solid fa-arrow-right"></i>
+                  Get Matched
+                </button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section home-featured-services">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-star"></i> Featured Service Paths</span>
+              <h2>Service categories that generate the most homeowner requests</h2>
+              <p class="lede">
+                These categories drive the strongest mix of urgent calls and estimate requests through the platform.
+              </p>
+            </div>
+            <a class="btn btn--light" href="services.html">
+              <i class="fa-solid fa-table-cells-large"></i>
+              View All Services
+            </a>
+          </div>
+          <div class="service-carousel reveal" data-service-carousel>
+            <div class="service-carousel__toolbar">
+              <p class="service-carousel__hint">
+                <span class="service-carousel__hint-dot" aria-hidden="true"></span>
+                Swipe, drag, or use the arrows to review the highest-intent service categories.
+              </p>
+              <div class="service-carousel__controls" role="group" aria-label="Featured services carousel controls">
+                <button class="service-carousel__button" type="button" data-carousel-prev aria-label="Show previous service">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="service-carousel__button" type="button" data-carousel-next aria-label="Show next service">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="service-carousel__viewport"
+              data-carousel-viewport
+              tabindex="0"
+              role="region"
+              aria-label="Featured plumbing service categories"
+            >
+              <div class="service-grid service-carousel__track">
+                <article class="card--service reveal">
+                  <figure class="media-tile media-tile--card">
+                    <img
+                      src="images/home/system-house-checks.jpg"
+                      alt="Home systems inspection context with plumbing request relevance"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <div class="icon-badge"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                  <h3>Emergency Plumbing Help</h3>
+                  <p>Connect quickly for urgent leaks, backups, water shutoff concerns, and after-hours plumbing situations.</p>
+                  <a class="card-link" href="service-pages/emergency-plumbing-help.html">
+                    Explore service
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </article>
+                <article class="card--service reveal" data-delay="1">
+                  <figure class="media-tile media-tile--card">
+                    <img
+                      src="images/home/plumber-working-house.jpg"
+                      alt="Plumber working inside a home on a residential plumbing issue"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <div class="icon-badge"><i class="fa-solid fa-filter"></i></div>
+                  <h3>Drain &amp; Pipe Cleaning</h3>
+                  <p>Request local contractor options for recurring clogs, slow drains, backups, and line flow issues.</p>
+                  <a class="card-link" href="service-pages/drain-pipe-cleaning.html">
+                    Explore service
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </article>
+                <article class="card--service reveal" data-delay="2">
+                  <figure class="media-tile media-tile--card">
+                    <img
+                      src="images/home/moder-bathroom.jpg"
+                      alt="Modern bathroom interior suited to plumbing installation and upgrade requests"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <div class="icon-badge"><i class="fa-solid fa-ruler-combined"></i></div>
+                  <h3>Plumbing Installation Solutions</h3>
+                  <p>Compare estimate options for remodels, new fixture connections, and line installation projects.</p>
+                  <a class="card-link" href="service-pages/plumbing-installation.html">
+                    Explore service
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </article>
+                <article class="card--service reveal" data-delay="3">
+                  <figure class="media-tile media-tile--card">
+                    <img
+                      src="images/home/master-repeir.jpg"
+                      alt="Plumbing repair work in progress inside a residential property"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <div class="icon-badge"><i class="fa-solid fa-temperature-half"></i></div>
+                  <h3>Water Heater Repair &amp; Setup</h3>
+                  <p>Find local provider connections for hot water issues, setup requests, and replacement planning.</p>
+                  <a class="card-link" href="service-pages/water-heater-repair-setup.html">
+                    Explore service
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </article>
+              </div>
+            </div>
+            <div class="service-carousel__footer">
+              <div class="service-carousel__progress" aria-hidden="true">
+                <span data-carousel-progress></span>
+              </div>
+              <div class="service-carousel__dots" data-carousel-dots role="group" aria-label="Featured services navigation"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ink">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-diagram-project"></i> How It Works</span>
+              <h2>A simpler path from plumbing problem to local contractor follow-up</h2>
+            </div>
+          </div>
+          <div class="process-grid">
+            <article class="process-card reveal">
+              <div class="step-index">01</div>
+              <h3>Choose call or form</h3>
+              <p>Use the phone route for urgent issues or the estimate path for more detailed project requests.</p>
+            </article>
+            <article class="process-card reveal" data-delay="1">
+              <div class="step-index">02</div>
+              <h3>Add service details</h3>
+              <p>ZIP code, service type, and a short message help narrow the request to the right local category.</p>
+            </article>
+            <article class="process-card reveal" data-delay="2">
+              <div class="step-index">03</div>
+              <h3>Connect with local contractors</h3>
+              <p>Requests are aligned with independent plumbing professionals serving the market and job type.</p>
+            </article>
+            <article class="process-card reveal" data-delay="3">
+              <div class="step-index">04</div>
+              <h3>Review next-step options</h3>
+              <p>Homeowners can discuss timing, estimate details, and project scope directly with providers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--sand">
+        <div class="container stats-wrap">
+          <div class="stats-panel reveal">
+            <span class="eyebrow"><i class="fa-solid fa-chart-line"></i> Platform Metrics</span>
+            <h2>Platform metrics tied to real homeowner activity across the network</h2>
+            <p class="lede">
+              These metrics represent platform activity, homeowner demand, and provider-network outcomes routed through BlueRoute. They do not describe direct labor performed by BlueRoute itself.
+            </p>
+            <div class="pill-row">
+              <span class="pill"><i class="fa-solid fa-file-circle-check"></i> Estimate-ready traffic</span>
+              <span class="pill"><i class="fa-solid fa-phone"></i> Live call activity</span>
+              <span class="pill"><i class="fa-solid fa-house"></i> Home-service conversion focus</span>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card stat-card--compact reveal">
+              <span class="stat-chip"><i class="fa-solid fa-file-circle-check"></i> Platform demand</span>
+              <span class="stat-value" data-counter="21400" data-suffix="+">0</span>
+              <h3>Service Requests Submitted</h3>
+              <p class="stat-note">Emergency calls, repair leads, and estimate-ready project forms.</p>
+            </article>
+            <article class="stat-card stat-card--compact reveal" data-delay="1">
+              <span class="stat-chip"><i class="fa-solid fa-user-group"></i> Homeowner trust</span>
+              <span class="stat-value" data-counter="15000" data-suffix="+">0</span>
+              <h3>Happy Homeowners</h3>
+              <p class="stat-note">Users who moved from plumbing issue to local provider follow-up.</p>
+            </article>
+            <article class="stat-card stat-card--compact reveal" data-delay="2">
+              <span class="stat-chip"><i class="fa-solid fa-pipe-section"></i> Replacement traffic</span>
+              <span class="stat-value" data-counter="12500" data-suffix="+">0</span>
+              <h3>Pipes Replaced</h3>
+              <p class="stat-note">Projects routed through repipe and larger upgrade conversations.</p>
+            </article>
+            <article class="stat-card stat-card--compact reveal" data-delay="3">
+              <span class="stat-chip"><i class="fa-solid fa-location-dot"></i> Active markets</span>
+              <span class="stat-value" data-counter="150" data-suffix="+">0</span>
+              <h3>Local Contractor Partners</h3>
+              <p class="stat-note">Independent providers participating in active routing zones.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section home-photo-trust">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-camera-retro"></i> Inside Real Homes</span>
+              <h2>The kinds of home situations that usually lead to calls and estimate requests</h2>
+              <p class="lede">The platform spans urgent repairs, visible fixture upgrades, and full-room plumbing projects. These image blocks make that mix easier to understand at a glance.</p>
+            </div>
+          </div>
+          <div class="situation-grid">
+            <a class="situation-card situation-card--urgent reveal" href="service-pages/emergency-plumbing-help.html">
+              <figure class="media-tile situation-card__media">
+                <img
+                  src="images/home/plumbing-repair-service.jpg"
+                  alt="Plumbing work under a sink during an active residential issue"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="situation-card__content">
+                <span class="situation-card__eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> Urgent category</span>
+                <div class="situation-card__body">
+                  <h3>Urgent Repairs</h3>
+                  <p>
+                    Burst pipes, active leaks, drainage backups, and other time-sensitive plumbing issues that often lead homeowners to call right away.
+                  </p>
+                </div>
+                <div class="situation-card__footer">
+                  <span class="situation-card__detail">Leaks, backups, burst pipes</span>
+                  <span class="situation-card__hint">View request path <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+
+            <a class="situation-card situation-card--fixtures reveal" data-delay="1" href="service-pages/faucet-fixture-services.html">
+              <figure class="media-tile situation-card__media">
+                <img
+                  src="images/home/kitchen.jpg"
+                  alt="Modern faucet installation in a premium kitchen sink"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="situation-card__content">
+                <span class="situation-card__eyebrow"><i class="fa-solid fa-faucet-drip"></i> Visible upgrades</span>
+                <div class="situation-card__body">
+                  <h3>Fixture Upgrades</h3>
+                  <p>
+                    Visible improvements such as faucet replacements, toilet upgrades, shower fixture changes, and other plumbing-related updates.
+                  </p>
+                </div>
+                <div class="situation-card__footer">
+                  <span class="situation-card__detail">Faucets, toilets, shower fixtures</span>
+                  <span class="situation-card__hint">View request path <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+
+            <a class="situation-card situation-card--projects reveal" data-delay="2" href="service-pages/plumbing-installation.html">
+              <figure class="media-tile situation-card__media">
+                <img
+                  src="images/home/bathroom.jpg"
+                  alt="Bathroom renovation with new sink, shower, and plumbing installation context"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="situation-card__content">
+                <span class="situation-card__eyebrow"><i class="fa-solid fa-bath"></i> Larger project scope</span>
+                <div class="situation-card__body">
+                  <h3>Full Plumbing Projects</h3>
+                  <p>
+                    Larger plumbing jobs tied to bathroom remodels, system updates, room renovations, and more involved home improvement work.
+                  </p>
+                </div>
+                <div class="situation-card__footer">
+                  <span class="situation-card__detail">Remodels, installations, room upgrades</span>
+                  <span class="situation-card__hint">View request path <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-house-circle-check"></i> Why Homeowners Use It</span>
+              <h2>Why homeowners use BlueRoute instead of bouncing between contractor websites</h2>
+            </div>
+          </div>
+          <div class="benefit-showcase">
+            <figure class="media-tile media-tile--showcase is-tall reveal" data-overlay-link="services.html" data-overlay-label="View services">
+              <img
+                src="images/home/plumbing-professional.jpg"
+                alt="Plumbing professional working on a pipe connection in a residential setting"
+                loading="lazy"
+              />
+              <figcaption class="media-overlay">
+                <strong>Built for high-intent homeowners</strong>
+                <span>Designed around urgent calls, structured estimate requests, and local contractor follow-up.</span>
+              </figcaption>
+            </figure>
+            <article class="content-card benefit-showcase-copy reveal" data-delay="1">
+              <span class="section-kicker"><i class="fa-solid fa-sparkles"></i> Platform Advantage</span>
+              <h3>A category-led platform helps homeowners sort the issue before committing to the next call</h3>
+              <p class="lede">BlueRoute is designed to feel more useful than a generic directory. The homeowner can describe the actual problem, choose the right category, and start the next conversation with better urgency and scope context.</p>
+              <ul class="stack-list" style="margin-top: 1.1rem">
+                <li><i class="fa-solid fa-check"></i><span>Service categories built around real homeowner intent, not vague directory browsing.</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Local routing language that supports both urgent repair needs and estimate-led upgrades.</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Clear aggregator positioning so expectations stay accurate before the provider conversation begins.</span></li>
+              </ul>
+            </article>
+          </div>
+          <div class="benefit-grid">
+            <article class="card reveal">
+              <div class="icon-badge"><i class="fa-solid fa-stopwatch"></i></div>
+              <h3>Speed without confusion</h3>
+              <p>Urgent plumbing issues often need a fast decision path. The platform keeps the actions simple: call or request an estimate.</p>
+            </article>
+            <article class="card reveal" data-delay="1">
+              <div class="icon-badge"><i class="fa-solid fa-scale-balanced"></i></div>
+              <h3>More local options</h3>
+              <p>Homeowners can start from one structured request instead of comparing availability across multiple unrelated sources.</p>
+            </article>
+            <article class="card reveal" data-delay="2">
+              <div class="icon-badge"><i class="fa-solid fa-circle-info"></i></div>
+              <h3>Transparent business model</h3>
+              <p>BlueRoute clearly positions itself as a connection platform, not as the plumbing company performing the work.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Common Plumbing Issues</span>
+              <h2>The plumbing problems homeowners most often describe first</h2>
+            </div>
+          </div>
+          <div class="issue-grid">
+            <article class="card reveal">
+              <div class="icon-badge"><i class="fa-solid fa-burst"></i></div>
+              <h3>Active leaks and water damage risk</h3>
+              <p>Sudden leaks, pipe failures, and moisture spread are often the highest urgency categories.</p>
+            </article>
+            <article class="card reveal" data-delay="1">
+              <div class="icon-badge"><i class="fa-solid fa-arrows-down-to-line"></i></div>
+              <h3>Slow drains or recurring backups</h3>
+              <p>Clogs and drainage issues tend to escalate when multiple fixtures are affected at once.</p>
+            </article>
+            <article class="card reveal" data-delay="2">
+              <div class="icon-badge"><i class="fa-solid fa-fire-flame-simple"></i></div>
+              <h3>No hot water or heater trouble</h3>
+              <p>Performance drops, no hot water, or visible moisture around a unit often lead to quick estimate requests.</p>
+            </article>
+            <article class="card reveal">
+              <div class="icon-badge"><i class="fa-solid fa-magnifying-glass"></i></div>
+              <h3>Hidden leaks behind walls or slabs</h3>
+              <p>Water bill spikes, stains, and unexplained moisture often prompt homeowners to seek diagnostic help.</p>
+            </article>
+            <article class="card reveal" data-delay="1">
+              <div class="icon-badge"><i class="fa-solid fa-toilet"></i></div>
+              <h3>Toilet and fixture problems</h3>
+              <p>Running toilets, loose bases, dripping faucets, and worn-out hardware are frequent request drivers.</p>
+            </article>
+            <article class="card reveal" data-delay="2">
+              <div class="icon-badge"><i class="fa-solid fa-house-medical"></i></div>
+              <h3>Aging plumbing systems</h3>
+              <p>Repeated repairs often lead homeowners to explore repipes and broader system replacement options.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section request-readiness-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-clipboard-list"></i> Better Request Quality</span>
+              <h2>What helps local contractors understand the request faster</h2>
+              <p class="lede">
+                A short, specific request usually leads to a cleaner follow-up. These are the details homeowners most often include when they want the right provider conversation sooner.
+              </p>
+            </div>
+          </div>
+          <div class="request-readiness-shell">
+            <article class="request-readiness-feature reveal">
+              <div class="request-readiness-feature__copy">
+                <span class="storyboard-label"><i class="fa-solid fa-house-signal"></i> Ready-to-route details</span>
+                <h3>Small details make it easier to match the request to the right local category</h3>
+                <p>
+                  Whether the need is urgent, estimate-led, or tied to a remodel, clear input helps independent local contractors understand scope before they follow up.
+                </p>
+                <div class="request-readiness-chips">
+                  <span class="request-readiness-chip">Active leak or standing water</span>
+                  <span class="request-readiness-chip">Kitchen, bathroom, basement, or utility room</span>
+                  <span class="request-readiness-chip">Repair help, estimate, or project planning</span>
+                  <span class="request-readiness-chip">Best callback time and ZIP code</span>
+                </div>
+                <a class="btn btn--primary" href="#home-estimate-form">
+                  <i class="fa-solid fa-file-signature"></i>
+                  Start Request
+                </a>
+              </div>
+              <figure class="media-tile request-readiness-feature__media" data-overlay-link="contact.html#estimate-form" data-overlay-label="Start estimate request">
+                <img
+                  src="images/home/plumbing-professional.jpg"
+                  alt="Plumbing professional reviewing a residential plumbing issue for follow-up"
+                  loading="lazy"
+                />
+                <figcaption class="media-overlay">
+                  <strong>Clear request details help speed up the next step</strong>
+                  <span>Describe the issue, room, urgency, and project goal.</span>
+                </figcaption>
+              </figure>
+            </article>
+            <div class="request-readiness-grid">
+              <article class="request-readiness-card reveal" data-delay="1">
+                <div class="request-readiness-card__icon"><i class="fa-solid fa-circle-question"></i></div>
+                <h3>Describe the issue clearly</h3>
+                <p>Examples like burst pipe, clogged drain, no hot water, or leak behind a wall help narrow the request path.</p>
+                <span class="request-readiness-card__meta">Problem type first</span>
+              </article>
+              <article class="request-readiness-card reveal" data-delay="2">
+                <div class="request-readiness-card__icon"><i class="fa-solid fa-house-chimney-window"></i></div>
+                <h3>Say where it is happening</h3>
+                <p>Kitchen, bathroom, laundry area, basement, garage, or utility room gives local contractors better job context.</p>
+                <span class="request-readiness-card__meta">Room + fixture context</span>
+              </article>
+              <article class="request-readiness-card reveal" data-delay="3">
+                <div class="request-readiness-card__icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Note urgency and timing</h3>
+                <p>Active water, a blocked drain, or total hot-water loss usually belongs on the call path rather than a slower estimate flow.</p>
+                <span class="request-readiness-card__meta">Call now vs. estimate</span>
+              </article>
+              <article class="request-readiness-card reveal" data-delay="4">
+                <div class="request-readiness-card__icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                <h3>Clarify the goal</h3>
+                <p>Homeowners often specify whether they need repair help, replacement options, or pricing for a remodel-led plumbing project.</p>
+                <span class="request-readiness-card__meta">Best next-step alignment</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ink">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-comment-dots"></i> Homeowner Trust</span>
+              <h2>Why the BlueRoute experience feels easier for homeowners</h2>
+            </div>
+          </div>
+          <div class="testimonial-grid">
+            <article class="quote-card reveal">
+              <div class="quote-mark">“</div>
+              <h3>Fast connection when the leak started spreading</h3>
+              <p>
+                I wanted one place to start instead of guessing which contractor site to trust. The call option made it easier to move quickly.
+              </p>
+              <div class="quote-meta">
+                <span>Lauren R.</span>
+                <span>Chicago homeowner</span>
+              </div>
+            </article>
+            <article class="quote-card reveal" data-delay="1">
+              <div class="quote-mark">“</div>
+              <h3>Useful for comparing installation estimates</h3>
+              <p>
+                We were planning fixture upgrades and needed local options. The request form gave enough structure without feeling heavy.
+              </p>
+              <div class="quote-meta">
+                <span>Marcus T.</span>
+                <span>Skokie homeowner</span>
+              </div>
+            </article>
+            <article class="quote-card reveal" data-delay="2">
+              <div class="quote-mark">“</div>
+              <h3>Clear that it was a connection service</h3>
+              <p>
+                I liked that the site explained the providers were independent and that it was there to connect me, not pretend to be the contractor itself.
+              </p>
+              <div class="quote-meta">
+                <span>Dana P.</span>
+                <span>Oak Park homeowner</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light home-faq-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-circle-question"></i> FAQ</span>
+              <h2>What homeowners usually want to know before they submit</h2>
+            </div>
+          </div>
+          <div class="home-faq-shell">
+            <aside class="faq-intro-card reveal">
+              <span class="faq-intro-card__eyebrow"><i class="fa-solid fa-shield-heart"></i> Clear before you submit</span>
+              <h3>Most homeowner questions come down to urgency, cost, and whether the platform is the contractor.</h3>
+              <p>This section answers the questions that usually show up right before a call or estimate request, so the next step feels clearer.</p>
+              <div class="faq-intro-card__chips">
+                <span class="faq-intro-chip"><i class="fa-solid fa-phone-volume"></i> Call for urgent issues</span>
+                <span class="faq-intro-chip"><i class="fa-solid fa-file-signature"></i> Form for planned work</span>
+                <span class="faq-intro-chip"><i class="fa-solid fa-building-circle-check"></i> Independent providers</span>
+              </div>
+            </aside>
+            <div class="faq-list faq-list--showcase">
+              <article class="faq-item reveal is-open" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="true" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Platform Role</span>
+                    <span>Is BlueRoute Plumbing Network a plumbing contractor?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>BlueRoute Plumbing Network is a free connection platform. It helps homeowners connect with independent local plumbing contractors and does not claim to perform the plumbing work directly.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="faq-item reveal" data-delay="1" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="false" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Urgency</span>
+                    <span>When should I call instead of filling out the form?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>Use the phone option when the issue is urgent, active water is involved, or the situation is disrupting the home right now. The form is ideal for estimate-driven projects and non-emergency requests.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="faq-item reveal" data-delay="2" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="false" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Cost</span>
+                    <span>Does it cost anything to submit a request?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>No. The site is free for homeowners who want to connect with local plumbing providers near them.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="faq-item reveal" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="false" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Project Scope</span>
+                    <span>Can I use the site for planned upgrades and installations?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>Yes. Many homeowners use the platform for water heater replacement, fixture upgrades, installation projects, and broader system replacement discussions.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="faq-item reveal" data-delay="1" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="false" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Providers</span>
+                    <span>Are the providers on this site independent?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>Yes. Contractors and providers are independent businesses. Availability, estimate details, and work performed are handled directly by those providers.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="faq-item reveal" data-delay="2" data-faq>
+                <button class="faq-toggle" type="button" aria-expanded="false" data-faq-toggle>
+                  <span class="faq-toggle__copy">
+                    <span class="faq-kicker">Best Match</span>
+                    <span>What details help improve my match?</span>
+                  </span>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="faq-panel">
+                  <div>
+                    <p>Include the service category, ZIP code, urgency, and a short description of the issue or project. That helps route the request more accurately.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div class="cta-grid">
+              <div>
+                <span class="eyebrow"><i class="fa-solid fa-phone-volume"></i> Ready To Connect?</span>
+                <h2>Choose the fastest path for your plumbing request</h2>
+                <p class="lede">
+                  Call for urgent plumbing issues or use the estimate form when you want to send better detail before local contractor follow-up begins.
+                </p>
+              </div>
+              <div class="inline-actions">
+                <a class="btn btn--light" href="tel:+13125550184">
+                  <i class="fa-solid fa-phone-volume"></i>
+                  Call Now
+                </a>
+                <a class="btn btn--ghost" href="contact.html#estimate-form">
+                  <i class="fa-solid fa-file-signature"></i>
+                  Request Estimate
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-callout">
+        <div class="footer-panel">
+          <a class="brand" href="index.html" aria-label="BlueRoute Plumbing home">
+            <img src="images/branding/logo-mark.svg" alt="BlueRoute Plumbing logo mark" />
+            <div class="brand-text">
+              <strong>BlueRoute Plumbing</strong>
+              <span>Local plumbing contractor matching</span>
+            </div>
+          </a>
+          <p class="footer-brand-copy">
+            BlueRoute helps homeowners connect with independent local plumbing contractors using issue-based request routing, ZIP-based matching, and call or estimate request options.
+          </p>
+          <div class="footer-tag-row">
+            <span class="footer-tag"><i class="fa-solid fa-circle-nodes"></i> Independent providers</span>
+            <span class="footer-tag"><i class="fa-solid fa-location-dot"></i> ZIP-based local matching</span>
+          </div>
+        </div>
+        <div class="footer-panel">
+          <span class="footer-kicker"><i class="fa-solid fa-headset"></i> Homeowner Support</span>
+          <h3 class="footer-action-title">Connect with local plumbing professionals faster.</h3>
+          <p class="footer-action-copy">
+            Call for urgent issues or send a request online to get estimate and follow-up options from nearby contractors.
+          </p>
+          <div class="footer-action-row">
+            <a class="btn btn--light" href="tel:+13125550184"><i class="fa-solid fa-phone-volume"></i>Call Now</a>
+            <a class="btn btn--ghost" href="contact.html#estimate-form"><i class="fa-solid fa-file-signature"></i>Request Estimate</a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-grid">
+        <div class="footer-column">
+          <div class="footer-group">
+            <h3 class="footer-title">Navigation</h3>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="services.html">Services</a>
+              <a href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div class="footer-group">
+            <h3 class="footer-title">Popular Services</h3>
+            <div class="footer-links">
+              <a href="service-pages/emergency-plumbing-help.html">Emergency Plumbing Help</a>
+              <a href="service-pages/drain-pipe-cleaning.html">Drain &amp; Pipe Cleaning</a>
+              <a href="service-pages/hidden-leak-detection.html">Hidden Leak Detection</a>
+              <a href="service-pages/water-heater-repair-setup.html">Water Heater Repair &amp; Setup</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-group">
+            <h3 class="footer-title">Contact Details</h3>
+            <div class="footer-links">
+              <a href="tel:+13125550184">(312) 555-0184</a>
+              <a href="mailto:hello@bluerouteplumbingnetwork.com">hello@bluerouteplumbingnetwork.com</a>
+              <p>1847 West Addison Street, Chicago, IL 60613, United States</p>
+              <p>Mon-Fri 7:00 AM - 9:00 PM CST<br />Sat-Sun 8:00 AM - 6:00 PM CST</p>
+            </div>
+          </div>
+          <div class="footer-group">
+            <h3 class="footer-title">Legal Links</h3>
+            <div class="footer-links">
+              <a href="privacy-policy.html">Privacy Policy</a>
+              <a href="terms-of-service.html">Terms of Service</a>
+              <a href="cookie-policy.html">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; <span data-year></span> BlueRoute Plumbing Network. All rights reserved.</p>
+        <p>
+          This site is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/mobile-menu.js" defer></script>
+    <script src="js/faq.js" defer></script>
+    <script src="js/form-validation.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/counters.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

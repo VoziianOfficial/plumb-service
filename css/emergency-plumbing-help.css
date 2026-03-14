@@ -1,0 +1,18 @@
+.service-emergency .service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: 420px;
+  height: 320px;
+  border-bottom-left-radius: 120px;
+  background: linear-gradient(135deg, rgba(255, 139, 99, 0.22), rgba(101, 217, 255, 0.08));
+}
+
+.service-emergency .visual-frame {
+  background: linear-gradient(180deg, #33161c, #111a27);
+}
+
+.service-emergency .service-focus-card,
+.service-emergency .icon-badge {
+  background: linear-gradient(135deg, rgba(255, 139, 99, 0.2), rgba(255, 177, 114, 0.2));
+}

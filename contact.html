@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact BlueRoute Plumbing Network to place a call, submit a plumbing estimate request, or get help choosing the category that best fits your home’s plumbing issue."
+    />
+    <title>Contact | BlueRoute Plumbing Network</title>
+    <link rel="icon" type="image/svg+xml" href="images/icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+  </head>
+  <body class="contact-page">
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="index.html" aria-label="BlueRoute Plumbing home">
+          <img src="images/branding/logo-mark.svg" alt="BlueRoute Plumbing logo mark" />
+          <div class="brand-text">
+            <strong>BlueRoute Plumbing</strong>
+            <span>Local plumbing contractor matching</span>
+          </div>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation" data-menu>
+          <div class="nav-list">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="services.html">Services</a>
+            <a class="nav-link is-active" href="contact.html" aria-current="page">Contact</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <a class="phone-chip" href="tel:+13125550184">
+            <i class="fa-solid fa-phone-volume"></i>
+            (312) 555-0184
+          </a>
+          <a class="btn btn--primary" href="#estimate-form">
+            <i class="fa-solid fa-file-signature"></i>
+            Get Estimate
+          </a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" data-menu-toggle>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero contact-hero">
+        <div class="container page-hero-shell">
+          <div class="page-hero-copy reveal">
+            <div class="breadcrumbs">
+              <a href="index.html">Home</a>
+              <i class="fa-solid fa-chevron-right"></i>
+              <span>Contact</span>
+            </div>
+            <span class="eyebrow"><i class="fa-solid fa-headset"></i> Contact BlueRoute</span>
+            <h1><span>Reach BlueRoute</span> and start the right request path</h1>
+            <p class="lede">
+              The contact page is the fastest way to start a plumbing request if you already know the issue, the room, or the kind of project involved. Call for urgency, or use the form to send detailed information for estimate-oriented follow-up.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="tel:+13125550184">
+                <i class="fa-solid fa-phone-volume"></i>
+                Call Now
+              </a>
+              <a class="btn btn--secondary" href="#estimate-form">
+                <i class="fa-solid fa-file-signature"></i>
+                Request Estimate
+              </a>
+            </div>
+          </div>
+          <div class="contact-hero-media reveal" data-delay="1">
+            <div class="contact-hero-stage">
+              <figure class="media-tile media-tile--showcase contact-hero-photo" data-overlay-link="contact.html#estimate-form" data-overlay-label="Open form">
+                <img
+                  src="images/service-pages/male-plumber-with-client.jpg"
+                  alt="Plumber speaking with a homeowner during a residential service visit"
+                  loading="eager"
+                />
+                <span class="contact-hero-chip">
+                  <i class="fa-solid fa-comment-dots"></i>
+                  Better request details lead to better local follow-up
+                </span>
+                <figcaption class="media-overlay">
+                  <strong>Contact options built around real request intent</strong>
+                  <span>Use the call path for urgency or send a more detailed estimate request when the job needs room, scope, and timeline context.</span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="glass-panel contact-hero-note floaty">
+              <strong>Best next step</strong>
+              <p>Call first when water is active or the situation feels urgent. Use the request form when you want to explain the issue in more detail or compare estimate paths.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <article class="form-card contact-form-card reveal" id="estimate-form">
+            <div class="section-copy">
+              <span class="section-kicker"><i class="fa-solid fa-file-circle-check"></i> Estimate Request</span>
+              <h2>Tell us what is happening at the home</h2>
+              <p class="lede">A clear request helps the platform connect the issue with the right plumbing category and the right kind of local follow-up.</p>
+            </div>
+            <div class="form-note-row">
+              <span class="form-note-chip"><i class="fa-solid fa-stopwatch"></i> Quick request form</span>
+              <span class="form-note-chip"><i class="fa-solid fa-house"></i> Built for U.S. homeowners</span>
+              <span class="form-note-chip"><i class="fa-solid fa-shield-heart"></i> Independent local providers</span>
+            </div>
+            <form class="lead-form lead-form--panel" data-form novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="contact-full-name">Full Name</label>
+                  <input id="contact-full-name" name="full_name" type="text" placeholder="Jordan Ellis" />
+                </div>
+                <div class="field">
+                  <label for="contact-phone-number">Phone Number</label>
+                  <input id="contact-phone-number" name="phone_number" type="tel" placeholder="(312) 555-0184" />
+                </div>
+                <div class="field">
+                  <label for="contact-zip-code">ZIP Code</label>
+                  <input id="contact-zip-code" name="zip_code" type="text" placeholder="60613" />
+                </div>
+                <div class="field">
+                  <label for="contact-service-needed">Service Needed</label>
+                  <select id="contact-service-needed" name="service_needed">
+                    <option value="">Choose a category</option>
+                    <option>Emergency Plumbing Help</option>
+                    <option>Drain &amp; Pipe Cleaning</option>
+                    <option>Plumbing Installation Solutions</option>
+                    <option>Plumbing System Replacement</option>
+                    <option>Leak Detection Services</option>
+                    <option>Water Heater Repair &amp; Setup</option>
+                    <option>Toilet Repair &amp; Installation</option>
+                    <option>Faucet &amp; Fixture Upgrades</option>
+                  </select>
+                </div>
+                <div class="field field--full">
+                  <label for="contact-message">Message</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="Describe the plumbing issue, any urgency, the affected area, and what type of help you want to explore."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-meta-row">
+                <span><i class="fa-solid fa-bolt"></i> Best for estimate requests and non-emergency details</span>
+                <span><i class="fa-solid fa-phone-volume"></i> Call instead if active water is involved</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="submit">
+                <i class="fa-solid fa-paper-plane"></i>
+                Submit Request
+              </button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <div class="mini-grid">
+            <article class="contact-card reveal" data-delay="1">
+              <div class="contact-card-badge"><i class="fa-solid fa-phone-volume"></i></div>
+              <h3>Call</h3>
+              <p>Use the live call path when the issue is active now, water is spreading, or the home cannot wait for a slower estimate conversation.</p>
+              <p class="meta-line" style="margin-top: 1rem"><a href="tel:+13125550184">(312) 555-0184</a></p>
+            </article>
+            <article class="contact-card reveal" data-delay="2">
+              <div class="contact-card-badge"><i class="fa-solid fa-envelope-open-text"></i></div>
+              <h3>Email</h3>
+              <p>If you are deciding between categories or want to explain the situation in writing first, email is a simple secondary contact option.</p>
+              <p class="meta-line" style="margin-top: 1rem"><a href="mailto:hello@bluerouteplumbingnetwork.com">hello@bluerouteplumbingnetwork.com</a></p>
+            </article>
+            <div class="contact-method-grid">
+              <article class="contact-card reveal">
+                <div class="contact-card-badge"><i class="fa-solid fa-clock"></i></div>
+                <h3>Hours</h3>
+                <p>Mon-Fri 7:00 AM - 9:00 PM CST<br />Sat-Sun 8:00 AM - 6:00 PM CST</p>
+              </article>
+              <article class="contact-card reveal" data-delay="1">
+                <div class="contact-card-badge"><i class="fa-solid fa-location-dot"></i></div>
+                <h3>Address</h3>
+                <p>1847 West Addison Street<br />Chicago, IL 60613<br />United States</p>
+              </article>
+            </div>
+            <div class="contact-map-embed" aria-label="BlueRoute Plumbing location in Chicago, Illinois">
+              <iframe
+                title="Map showing 1847 West Addison Street, Chicago, Illinois"
+                src="https://www.google.com/maps?q=1847+West+Addison+Street,+Chicago,+IL+60613&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--sand">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div class="cta-grid">
+              <div>
+                <span class="eyebrow"><i class="fa-solid fa-circle-info"></i> Helpful Reminder</span>
+                <h2>BlueRoute helps homeowners reach independent local plumbing providers</h2>
+                <p class="lede">BlueRoute organizes requests and routing, while the contractor conversation and the work itself remain with independent local providers.</p>
+              </div>
+              <div class="inline-actions">
+                <a class="btn btn--light" href="services.html">
+                  <i class="fa-solid fa-layer-group"></i>
+                  Browse Services
+                </a>
+                <a class="btn btn--ghost" href="tel:+13125550184">
+                  <i class="fa-solid fa-phone-volume"></i>
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-callout">
+        <div class="footer-panel">
+          <a class="brand" href="index.html" aria-label="BlueRoute Plumbing home">
+            <img src="images/branding/logo-mark.svg" alt="BlueRoute Plumbing logo mark" />
+            <div class="brand-text">
+              <strong>BlueRoute Plumbing</strong>
+              <span>Local plumbing contractor matching</span>
+            </div>
+          </a>
+          <p class="footer-brand-copy">
+            BlueRoute helps homeowners connect with independent local plumbing contractors using issue-based request routing, ZIP-based matching, and call or estimate request options.
+          </p>
+          <div class="footer-tag-row">
+            <span class="footer-tag"><i class="fa-solid fa-circle-nodes"></i> Independent providers</span>
+            <span class="footer-tag"><i class="fa-solid fa-location-dot"></i> ZIP-based local matching</span>
+          </div>
+        </div>
+        <div class="footer-panel">
+          <span class="footer-kicker"><i class="fa-solid fa-headset"></i> Homeowner Support</span>
+          <h3 class="footer-action-title">Connect with local plumbing professionals faster.</h3>
+          <p class="footer-action-copy">
+            Call for urgent issues or send a request online to get estimate and follow-up options from nearby contractors.
+          </p>
+          <div class="footer-action-row">
+            <a class="btn btn--light" href="tel:+13125550184"><i class="fa-solid fa-phone-volume"></i>Call Now</a>
+            <a class="btn btn--ghost" href="contact.html#estimate-form"><i class="fa-solid fa-file-signature"></i>Request Estimate</a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-grid">
+        <div class="footer-column">
+          <div class="footer-group">
+            <h3 class="footer-title">Navigation</h3>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="services.html">Services</a>
+              <a href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div class="footer-group">
+            <h3 class="footer-title">Popular Services</h3>
+            <div class="footer-links">
+              <a href="service-pages/emergency-plumbing-help.html">Emergency Plumbing Help</a>
+              <a href="service-pages/drain-pipe-cleaning.html">Drain &amp; Pipe Cleaning</a>
+              <a href="service-pages/hidden-leak-detection.html">Hidden Leak Detection</a>
+              <a href="service-pages/water-heater-repair-setup.html">Water Heater Repair &amp; Setup</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-group">
+            <h3 class="footer-title">Contact Details</h3>
+            <div class="footer-links">
+              <a href="tel:+13125550184">(312) 555-0184</a>
+              <a href="mailto:hello@bluerouteplumbingnetwork.com">hello@bluerouteplumbingnetwork.com</a>
+              <p>1847 West Addison Street, Chicago, IL 60613, United States</p>
+              <p>Mon-Fri 7:00 AM - 9:00 PM CST<br />Sat-Sun 8:00 AM - 6:00 PM CST</p>
+            </div>
+          </div>
+          <div class="footer-group">
+            <h3 class="footer-title">Legal Links</h3>
+            <div class="footer-links">
+              <a href="privacy-policy.html">Privacy Policy</a>
+              <a href="terms-of-service.html">Terms of Service</a>
+              <a href="cookie-policy.html">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; <span data-year></span> BlueRoute Plumbing Network. All rights reserved.</p>
+        <p>
+          This site is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/mobile-menu.js" defer></script>
+    <script src="js/faq.js" defer></script>
+    <script src="js/form-validation.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/counters.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
