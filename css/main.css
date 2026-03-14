@@ -28,7 +28,7 @@
   --radius-md: 28px;
   --radius-lg: 40px;
   --container: min(1240px, calc(100% - 2rem));
-  --section-space: clamp(4.9rem, 7vw, 6.5rem);
+  --section-space: clamp(4.2rem, 6.2vw, 5.75rem);
   --transition: 220ms ease;
 }
 
@@ -167,6 +167,14 @@ a {
     radial-gradient(circle at 100% 0%, rgba(255, 139, 99, 0.12), transparent 24%),
     linear-gradient(180deg, var(--surface-dark), #09131f);
   color: var(--text-on-dark);
+}
+
+.service-page .section--ink {
+  background:
+    linear-gradient(180deg, rgba(6, 14, 24, 0.72), rgba(8, 18, 30, 0.84)),
+    radial-gradient(circle at 0% 100%, rgba(101, 217, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(255, 139, 99, 0.14), transparent 24%),
+    url("../images/service-pages/kenny.jpg") center / cover no-repeat;
 }
 
 .section--ink h2,
@@ -1689,13 +1697,99 @@ body.menu-open .menu-toggle::after {
 }
 
 .legal-anchor-list {
+  counter-reset: legal-links;
+  display: grid;
+  gap: 0.55rem;
   margin-top: 1rem;
+  color: var(--text-soft);
 }
 
 .legal-anchor-list a {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.78rem 0.95rem;
+  border-radius: 18px;
+  border: 1px solid rgba(18, 32, 51, 0.08);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--text);
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+.legal-anchor-list a::before {
+  counter-increment: legal-links;
+  content: counter(legal-links, decimal-leading-zero);
+  flex: 0 0 auto;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.legal-nav-card .footer-links a:hover,
+.legal-nav-card .footer-links a:focus-visible {
+  transform: translateX(0) translateY(-2px);
+  color: var(--text);
+  border-color: rgba(44, 139, 255, 0.16);
+  box-shadow: 0 14px 28px rgba(9, 19, 31, 0.08);
+}
+
+.legal-nav-card__intro {
+  margin-top: 0.85rem;
+  color: var(--text-soft);
+  line-height: 1.68;
+}
+
+.legal-nav-card__section {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(18, 32, 51, 0.08);
+}
+
+.legal-nav-card__section h3 {
+  font-size: 1rem;
+}
+
+.legal-nav-card__section .stack-list {
+  margin-top: 0.85rem;
+}
+
+.legal-nav-card__section--links {
+  padding-top: 1rem;
+}
+
+.legal-quick-links {
+  display: grid;
+  gap: 0.72rem;
+  margin-top: 0.85rem;
+}
+
+.legal-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(18, 32, 51, 0.08);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(247, 241, 233, 0.74));
+  color: var(--text);
+  font-weight: 700;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.legal-quick-links a:hover,
+.legal-quick-links a:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(44, 139, 255, 0.18);
+  box-shadow: 0 16px 32px rgba(9, 19, 31, 0.08);
 }
 
 .legal-copy {
@@ -1970,7 +2064,7 @@ body.menu-open .menu-toggle::after {
   }
 
   .section {
-    padding: 3.85rem 0;
+    padding: 3.35rem 0;
   }
 
   .hero,

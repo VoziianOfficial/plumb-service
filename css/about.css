@@ -76,6 +76,14 @@
   background: rgba(255, 255, 255, 0.8);
 }
 
+.about-process-section {
+  background:
+    linear-gradient(180deg, rgba(6, 14, 24, 0.72), rgba(8, 18, 30, 0.84)),
+    radial-gradient(circle at 0% 100%, rgba(101, 217, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(255, 139, 99, 0.14), transparent 24%),
+    url("../images/about/kenny.jpg") center / cover no-repeat;
+}
+
 @media (max-width: 760px) {
   .about-hero-media {
     width: 100%;
